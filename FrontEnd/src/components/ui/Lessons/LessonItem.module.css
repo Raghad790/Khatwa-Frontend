@@ -1,0 +1,41 @@
+.lessonItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.lessonItem:hover {
+  background-color: #f0f8ff;
+}
+
+.selected {
+  background-color: #d0ebff;
+  font-weight: bold;
+}
+
+.completed {
+  color: #28a745;
+  text-decoration: line-through;
+}
+
+.lessonTitle {
+  flex-grow: 1;
+}
+
+.completeButton {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.completeButton:hover {
+  background-color: #0056b3;
+}

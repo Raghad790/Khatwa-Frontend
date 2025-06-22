@@ -1,0 +1,242 @@
+/* Base Styles */
+.profileContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.success {
+    color: #28a745;
+    margin-top: 1rem;
+}
+
+/* Basic Info Section */
+.basicInfo {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f0f0f0;
+}
+
+.profileForm {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profileForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.profileForm input[type="text"],
+.profileForm input[type="email"],
+.profileForm input[type="url"] {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Courses Sections */
+.coursesSection {
+    margin-bottom: 3rem;
+}
+
+.coursesSection h2 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* Student Courses List */
+.courseList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.courseItem {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.courseItem:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.courseThumbnail {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.courseDetails {
+    flex: 1;
+}
+
+.courseDetails h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.courseDetails progress {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+/* Instructor Courses Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.courseCard {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.courseCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.courseContent {
+    padding: 1rem;
+}
+
+.courseContent h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.metaData {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.courseActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editBtn, .statsBtn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    flex: 1;
+    transition: background-color 0.2s ease;
+}
+
+.editBtn {
+    background-color: #e2e8f0;
+}
+
+.editBtn:hover {
+    background-color: #cbd5e1;
+}
+
+.statsBtn {
+    background-color: #3182ce;
+    color: white;
+}
+
+.statsBtn:hover {
+    background-color: #2c5282;
+}
+
+/* Password Section */
+.passwordSection {
+    margin-top: 3rem;
+text-align: center;
+align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.passwordForm {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.passwordForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.passwordForm input[type="password"] {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.updateBtn {
+    padding: 0.75rem 1.5rem;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-self: flex-start;
+}
+
+.updateBtn:hover {
+    background-color: #2c5282;
+}
+
+@media (max-width: 768px) {
+    .basicInfo {
+        flex-direction: column;
+    }
+    
+    .avatar {
+        align-self: center;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

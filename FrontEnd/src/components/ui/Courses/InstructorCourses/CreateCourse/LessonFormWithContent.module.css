@@ -1,0 +1,135 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.select,
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.button,
+.continueBtn,
+.addButton,
+.removeButton {
+  background-color: #007bff;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover,
+.continueBtn:hover,
+.addButton:hover,
+.removeButton:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: #d93025;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.success {
+  color: #188038;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.lessonList {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+  border-top: 1px solid #ddd;
+}
+
+.lessonItem {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+}
+
+.subheading {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  color: #222;
+  text-align: center;
+}
+
+.quizSection,
+.assignmentSection {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #e1e1e1;
+}
+
+.quizQuestion {
+  margin-bottom: 1.2rem;
+}
+
+.optionsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -1,0 +1,93 @@
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 40px;
+  background-color: #f5f7fa;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  background-color: #e0f2fe;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+}
+
+.card_body {
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.card_body h3 {
+  font-size: 1.2rem;
+  color: #0c4a6e;
+  margin-bottom: 6px;
+}
+
+.card_body p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 4px 0;
+}
+
+.description {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.enrollButton {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: rgba(27, 108, 221, 0.995);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enrollButton:hover {
+  background-color: #1e6ad3;
+}
+
+/* Responsive behavior */
+@media (max-width: 1024px) {
+  .cards_container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .cards_container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .cards_container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}

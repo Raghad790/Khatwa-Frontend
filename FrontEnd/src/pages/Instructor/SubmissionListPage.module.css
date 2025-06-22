@@ -1,0 +1,20 @@
+/* SubmissionListPage.module.css */
+.mainContent {
+    margin-left: 250px; /* Match sidebar width */
+    padding: 20px;
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: #d32f2f;
+    padding: 1rem;
+    background: #ffebee;
+    border-radius: 4px;
+    margin: 1rem;
+}

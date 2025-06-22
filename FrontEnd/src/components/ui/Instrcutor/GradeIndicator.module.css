@@ -1,0 +1,41 @@
+/* GradeIndicator.module.css */
+.gradeIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.gradeIndicator.A {
+  background-color: #e6f7ee;
+  color: #0d8f5b;
+  border: 1px solid #0d8f5b;
+}
+
+.gradeIndicator.B {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+.gradeIndicator.C {
+  background-color: #fff8e1;
+  color: #ff8f00;
+  border: 1px solid #ff8f00;
+}
+
+.gradeIndicator.D {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.gradeIndicator.F {
+  background-color: #f5f5f5;
+  color: #616161;
+  border: 1px solid #e0e0e0;
+}

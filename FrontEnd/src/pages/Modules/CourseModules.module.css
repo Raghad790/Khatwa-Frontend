@@ -1,0 +1,23 @@
+.pageLayout {
+  display: flex;
+  min-height: 80vh;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.error {
+  color: red;
+}
+.pageLayout {
+  display: flex;
+  gap: 1rem;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 1rem;
+}

@@ -1,0 +1,24 @@
+/* StatusBadge.module.css */
+.statusBadge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.statusBadge.graded {
+  background-color: #e6f7ee;
+  color: #0d8f5b;
+}
+
+.statusBadge.ungraded {
+  background-color: #fff4e6;
+  color: #e67e22;
+}
+
+.statusBadge.late {
+  background-color: #ffebee;
+  color: #d32f2f;
+}

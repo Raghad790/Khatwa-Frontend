@@ -1,0 +1,132 @@
+/* GradeAssignment.module.css */
+
+.gradeAssignmentPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.header {
+  padding: 1.5rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gradingContainer {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.submissionList {
+  width: 350px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  padding: 1rem;
+  font-weight: 600;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.submissionRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submissionRow:hover {
+  background: #f8f9fa;
+}
+
+.studentCell {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.gradingPanel {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.submissionViewer {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+.gradingForm {
+  width: 400px;
+  padding: 1.5rem;
+  background: white;
+  border-left: 1px solid #e0e0e0;
+  overflow-y: auto;
+}
+
+.gradeInput, .feedbackInput {
+  margin-bottom: 1.5rem;
+}
+
+.gradeInput input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.saveButton {
+  background: #4caf50;
+  color: white;
+}
+
+.cancelButton {
+  background: white;
+  border: 1px solid #ddd;
+}
+
+/* Rubric styles */
+.rubricContainer {
+  margin-top: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.rubricItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rubricControl {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rubricControl input {
+  width: 50px;
+  text-align: center;
+}

@@ -1,0 +1,133 @@
+.form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 10px 24px rgba(0, 123, 255, 0.2);
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #222;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.2rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+  outline-offset: 2px;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.selectWrapper {
+  margin-bottom: 1.2rem;
+}
+
+.button {
+  width: 100%;
+  padding: 0.85rem 0;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.6);
+}
+
+.error {
+  color: #d93025;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.success {
+  color: #188038;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .button {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .heading {
+    font-size: 1.3rem;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    font-size: 0.9rem;
+  }
+
+  .button {
+    font-size: 0.95rem;
+  }
+}

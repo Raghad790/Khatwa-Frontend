@@ -1,0 +1,167 @@
+/* Global box-sizing for consistency */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+}
+
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 1.25rem;
+  color: #222;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+  outline-offset: 2px;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.button,
+.continueBtn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.button:hover,
+.continueBtn:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 16px rgba(0, 86, 179, 0.6);
+}
+
+/* Make buttons full width on very small screens for better touch targets */
+@media (max-width: 480px) {
+  .button,
+  .continueBtn {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+.error {
+  color: #d93025;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+  text-align: center;
+}
+
+.moduleList {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+  border-top: 1px solid #ddd;
+}
+
+.moduleItem {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.moduleItem:hover {
+  background-color: #f0f8ff;
+}
+
+.moduleItem strong {
+  color: #007bff;
+}
+
+p {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.6rem;
+  }
+
+  .input,
+  .textarea {
+    font-size: 1rem;
+  }
+
+  .button,
+  .continueBtn {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.95rem;
+  }
+
+  .moduleItem {
+    font-size: 0.9rem;
+  }
+}

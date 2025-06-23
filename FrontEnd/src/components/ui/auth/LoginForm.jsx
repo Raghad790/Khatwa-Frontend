@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../../../hooks/Auth/userAuth';
-import { MdErrorOutline, MdEmail, MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { MdErrorOutline, MdEmail, MdLock } from "react-icons/md";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -44,81 +44,105 @@ function Login() {
         }
     };
 
-
-
     return (
-        <div className={styles.container}>
-            <div className={styles.card}>
-                <div className={styles.header}>
-                    <h1 className={styles.title}>Welcome Back</h1>
-                    <p className={styles.subtitle}>Please enter your credentials</p>
-                </div>
-
-                {error && (
-                    <div className={styles.error}>
-                        <MdErrorOutline size={18} />
-                        <span>{error}</span>
+        <div className={styles.pageContainer}>
+            <div className={styles.authWrapper}>
+                {/* Left Side - Form */}
+                <div className={styles.formSide}>
+                    <div className={styles.logoContainer}>
+                        <img src="/khlogo.png" alt="Khatwa" className={styles.logo} />
+                        <h3 className={styles.logoText}>KHATWA</h3>
                     </div>
-                )}
-
-                <form className={styles.form} onSubmit={handleLogin}>
-                    <div className={styles.inputGroup}>
-                        <input
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email Address"
-                            className={styles.input}
-                            required
-                            disabled={isLoading}
-                        />
-                        <MdEmail className={styles.inputIcon} />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                        <input
-                            type={"password"}
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
-                            className={styles.input}
-                            required
-                            minLength={6}
-                            disabled={isLoading}
-                        />
-                        <MdLock className={styles.inputIcon} />
-
-                        {/* <button
-                            type="button"
-                            className={styles.toggleButton}
-                            onClick={() => setShowPassword(!showPassword)}
-                            aria-label={showPassword ? "Hide password" : "Show password"}
-                        >
-                            {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
-                        </button> */}
-                    </div>
-
-                    <button
-                        type="submit"
-                        className={styles.submitButton}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <span className={styles.loading}>
-                                <span className={styles.spinner}></span>
-                                Signing in...
-                            </span>
-                        ) : (
-                            'Sign In'
+                    <div className={styles.loginCard}>
+                        <h2 className={styles.title}>Welcome Back</h2>
+                        <p className={styles.subtitle}>Please enter your credentials</p>
+                        {error && (
+                            <div className={styles.error}>
+                                <MdErrorOutline size={18} />
+                                <span>{error}</span>
+                            </div>
                         )}
-                    </button>
-
-                    <div className={styles.signupPrompt}>
-                        Don't have an account? <Link to="/register" className={styles.signupLink}>Sign up</Link>
+                        <form className={styles.form} onSubmit={handleLogin}>
+                            <div className={styles.inputGroup}>
+                                <label className={styles.inputLabel}>
+                                    <MdEmail size={18} />
+                                    <span>Email</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Email Address"
+                                    className={styles.input}
+                                    required
+                                    disabled={isLoading}
+                                />
+                            </div>
+                            <div className={styles.inputGroup}>
+                                <label className={styles.inputLabel}>
+                                    <MdLock size={18} />
+                                    <span>Password</span>
+                                </label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Password"
+                                    className={styles.input}
+                                    required
+                                    minLength={6}
+                                    disabled={isLoading}
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <span className={styles.loading}>
+                                        <span className={styles.spinner}></span>
+                                        Signing in...
+                                    </span>
+                                ) : (
+                                    'Sign In'
+                                )}
+                            </button>
+                            <div className={styles.signupPrompt}>
+                                Don't have an account? <Link to="/register" className={styles.signupLink}>Sign up</Link>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
+                {/* Right Side - Visual */}
+                <div className={styles.imageSide}>
+                    <div className={styles.contentWrapper}>
+                        <h2 className={styles.welcomeTitle}>Find Your Perfect Courses & Improve Your Skills</h2>
+                        <p className={styles.welcomeText}>
+                            Make your learning count. Get unlimited and instant access to online courses from top instructors.
+                        </p>
+                        <div className={styles.features}>
+                            <div className={styles.featureItem}>
+                                <div className={styles.featureIcon}>★</div>
+                                <div className={styles.featureText}>Rated 4.9/5 by students</div>
+                            </div>
+                            <div className={styles.featureItem}>
+                                <div className={styles.featureIcon}>✓</div>
+                                <div className={styles.featureText}>Expert instructors</div>
+                            </div>
+                            <div className={styles.featureItem}>
+                                <div className={styles.featureIcon}>✓</div>
+                                <div className={styles.featureText}>Modern interactive platform</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.shapesContainer}>
+                        <div className={styles.shape1}></div>
+                        <div className={styles.shape2}></div>
+                    </div>
+                </div>
             </div>
         </div>
     );

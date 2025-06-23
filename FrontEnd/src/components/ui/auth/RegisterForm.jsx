@@ -65,7 +65,7 @@ function Register() {
             <div className={styles.card}>
                 <div className={styles.header}>
                     <h1 className={styles.title}>Create Account</h1>
-                    <p className={styles.subtitle}>Join our platform to get started</p>
+                    <p className={styles.subtitle}>Join KHATWA to get started</p>
                 </div>
 
                 {error && (

@@ -8,6 +8,8 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, A
 const Footer = () => {
   return (
     <footer className={styles.footer}>
+      {/* Decorative Gradient Wave */}
+      <div className={styles.waveTop} aria-hidden />
       {/* Main Footer Content */}
       <div className={styles.mainFooter}>
         <div className={styles.container}>
@@ -19,7 +21,8 @@ const Footer = () => {
                 <h3 className={styles.name}>Khatwa</h3>
               </div>
               <p className={styles.description}>
-                Guiding Your First Step to Greatness. A modern learning management system designed to help you achieve your educational goals.
+                Guiding Your First Step to Greatness. <br />
+                A modern learning management system designed to help you achieve your educational goals.
               </p>
               <div className={styles.socialLinks}>
                 <a href="#" aria-label="Facebook"><Facebook size={18} /></a>

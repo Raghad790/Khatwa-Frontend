@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
     MdDashboard,
@@ -44,20 +44,53 @@ const Sidebar = () => {
 
     const isActive = (path) => location.pathname === path;
 
+    // Hide scroll when sidebar is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     return (
         <>
-            <button
-                className={styles.mobileToggle}
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label={isOpen ? 'Close sidebar' : 'Open sidebar'}
-            >
-                {isOpen ? <MdClose /> : <MdMenu />}
-            </button>
+            {/* Toggle always visible */}
+            {!isOpen && (
+                <button
+                    className={styles.mobileToggle}
+                    onClick={() => setIsOpen(true)}
+                    aria-label="Open sidebar"
+                >
+                    <MdMenu />
+                </button>
+            )}
+
+            {/* Overlay for full screen when sidebar is open */}
+            {isOpen && (
+                <div
+                    className={styles.overlay}
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close sidebar overlay"
+                />
+            )}
 
             <aside
                 className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}
                 aria-label="Sidebar navigation"
             >
+                {/* Close button always visible inside sidebar */}
+                <button
+                    className={styles.closeBtn}
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close sidebar"
+                >
+                    <MdClose />
+                </button>
+
                 <div className={styles.profile}>
                     <div className={styles.avatar} aria-hidden="true">
                         {user?.name?.charAt(0).toUpperCase() || 'U'}
@@ -93,9 +126,13 @@ const Sidebar = () => {
                                     </Link>
                                     {subItems && (
                                         <button
-                                            onClick={() => toggleSubmenu(title)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleSubmenu(title);
+                                            }}
                                             className={styles.expandBtn}
                                             aria-label={`${openSubmenu === title ? 'Collapse' : 'Expand'} submenu for ${title}`}
+                                            tabIndex={0}
                                         >
                                             {openSubmenu === title ? <MdExpandLess /> : <MdExpandMore />}
                                         </button>

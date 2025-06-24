@@ -1,0 +1,101 @@
+.profileContainer {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profileContainer h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #1a1d29;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.profileContainer p {
+  font-size: 16px;
+  margin: 12px 0;
+  color: #333333;
+}
+
+.profileContainer strong {
+  color: #555555;
+}
+
+.profileContainer img {
+  margin-top: 20px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+.profileContainer {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+img {
+  max-width: 120px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive {
+  color: crimson;
+  font-weight: bold;
+}
+
+.statusBtn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.statusBtn:hover {
+  background-color: #005fa3;
+}
+
+.statusBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.deleteBtn {
+    background-color: #e53935;
+    color: white;
+    border: none;
+margin: 20px;
+    padding: 10px 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.deleteBtn:hover {
+    background-color: #c62828;
+}

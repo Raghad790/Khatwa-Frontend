@@ -1,0 +1,181 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  background: #fafaff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 36px rgba(127,86,218,0.06);
+}
+
+.headerSection {
+  text-align: left;
+  margin-bottom: 2.2rem;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #7f56da22, #ea6fb822);
+  color: #7f56da;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0.7rem 0 0.2rem 0;
+  background: linear-gradient(90deg, #7f56da, #ea6fb8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.subtitle {
+  color: #6b6b88;
+  font-size: 1.08rem;
+  margin: 0;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(127,86,218,0.04);
+}
+
+.table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 16px;
+}
+
+th, td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: #f6f1fe;
+  color: #7f56da;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border-bottom: 2px solid #ece5fa;
+}
+
+td {
+  background: #fff;
+  border-bottom: 1.5px solid #f3f0fa;
+  font-size: 1.01rem;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.courseTitle {
+  font-weight: 600;
+  color: #2b2250;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.courseIcon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #7f56da, #ea6fb8);
+  display: inline-block;
+}
+
+.instructorName {
+  color: #6346c7;
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+
+.category {
+  display: inline-block;
+  background: #f5ecff;
+  color: #7f56da;
+  padding: 3px 14px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.descriptionCell {
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkIcon {
+  color: #27c07d;
+  background: #e6f9ef;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.crossIcon {
+  color: #ea6fb8;
+  background: #fff0f6;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1.2rem 0.6rem 2.5rem;
+  }
+  .headerSection {
+    margin-bottom: 1.2rem;
+  }
+  .title {
+    font-size: 1.35rem;
+  }
+  .tableWrapper {
+    border-radius: 10px;
+  }
+  th, td {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100vw;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0.7rem 0.2rem 1.2rem;
+  }
+  .tableWrapper {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .headerSection {
+    margin-bottom: 0.5rem;
+  }
+  .title {
+    font-size: 1.03rem;
+  }
+  th, td {
+    padding: 0.44rem 0.36rem;
+    font-size: 0.85rem;
+  }
+}

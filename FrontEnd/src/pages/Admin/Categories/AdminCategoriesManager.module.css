@@ -1,0 +1,181 @@
+/* AdminCategoriesManager.module.css */
+
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #1b6cdd;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  flex-grow: 1;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  min-width: 150px;
+}
+
+input[type="text"] {
+  flex-grow: 2;
+  min-width: 200px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #1b6cdd;
+  box-shadow: 0 0 5px rgba(27,108,221,0.5);
+}
+
+button {
+  background-color: #1b6cdd;
+  color: white;
+  border: none;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #155ab7;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.cancelBtn {
+  background-color: #ccc;
+  color: #333;
+}
+
+button.cancelBtn:hover {
+  background-color: #999;
+}
+
+.errorMessage {
+  color: #f44336;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #1b6cdd;
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #e6f0ff;
+}
+
+.actions button {
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:last-child {
+  margin-right: 0;
+}
+
+.actions button.editBtn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.actions button.editBtn:hover {
+  background-color: #3e8e41;
+}
+
+.actions button.deleteBtn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.actions button.deleteBtn:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  label {
+    min-width: auto;
+    font-size: 1.1rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    flex-grow: 0;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .actions button {
+    width: 48%;
+    margin: 0 1% 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .actions button:last-child {
+    margin-right: 0;
+  }
+}

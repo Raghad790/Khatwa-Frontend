@@ -1,0 +1,133 @@
+.recommendedContainer {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.recommendedTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+.recommendedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.courseCard {
+    background: #fff;
+    border-radius: 1.1rem;
+    padding: 1rem 1rem 1.5rem 1rem;
+    box-shadow: 0 6px 12px rgba(127,86,218,0.06);
+    transition: transform 0.23s cubic-bezier(.36,2,.42,.93), box-shadow 0.23s cubic-bezier(.36,2,.42,.93);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+}
+
+.courseCard:hover {
+    transform: translateY(-7px) scale(1.022);
+    box-shadow: 0 14px 34px rgba(127,86,218,0.13);
+}
+
+.cardImageWrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 0.8rem 0.8rem 0 0;
+    overflow: hidden;
+    background: #f4efff;
+    box-shadow: 0 2px 10px rgba(127,86,218,0.09);
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #fff;
+    border-radius: 0.8rem 0.8rem 0 0;
+    transition: transform 0.18s cubic-bezier(.36,2,.42,.93);
+}
+
+.courseCard:hover .cardImageWrapper img,
+.cardImageWrapper:focus img {
+    transform: scale(1.045) rotate(-1.5deg);
+}
+
+.courseCard h3 {
+    font-size: 1.16rem;
+    color: #7f56da;
+    font-weight: 800;
+    margin: 0.8rem 0 0.4rem;
+    background: linear-gradient(90deg, #7f56da, #ea6fb8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.courseCard p {
+    font-size: 0.97rem;
+    color: #666;
+    flex-grow: 1;
+    font-style: italic;
+    margin-bottom: 0.7rem;
+}
+
+.btnView {
+    display: inline-block;
+    margin-top: 0.3rem;
+    background: linear-gradient(90deg, #7f56da 60%, #ea6fb8 100%);
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.18s cubic-bezier(.36,2,.42,.93), box-shadow 0.18s;
+    border: none;
+    font-size: 1.02rem;
+    box-shadow: 0 2px 6px rgba(127,86,218,0.08);
+    cursor: pointer;
+}
+
+.btnView:hover,
+.btnView:focus-visible {
+    background: linear-gradient(90deg, #ea6fb8 70%, #7f56da 100%);
+    box-shadow: 0 6px 20px rgba(127,86,218,0.19);
+    outline: none;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.3rem;
+    color: #777;
+}
+
+@media (max-width: 700px) {
+    .recommendedContainer {
+        padding: 0.3rem;
+    }
+    .recommendedGrid {
+        gap: 0.9rem;
+    }
+    .courseCard {
+        padding: 0.6rem 0.4rem 1rem 0.4rem;
+    }
+    .cardImageWrapper {
+        aspect-ratio: 16/10;
+    }
+    .btnView {
+        padding: 0.5rem 1.1rem;
+        font-size: 0.97rem;
+    }
+}

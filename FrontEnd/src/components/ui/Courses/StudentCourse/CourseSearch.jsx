@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import style from './CourseSearch.module.css'; // replace with actual path
+import style from './CourseSearch.module.css';
 
 function CourseSearch() {
     const [query, setQuery] = useState('');
@@ -18,7 +18,7 @@ function CourseSearch() {
         }
 
         try {
-            const res = await fetch(`/api/course/search?keyword=${val}`, {
+            const res = await fetch(`/api/course/search?keyword=${encodeURIComponent(val)}`, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -26,20 +26,26 @@ function CourseSearch() {
                 },
             });
 
-            // Log raw text response before parsing
             const text = await res.text();
+            let data = {};
+            try {
+                data = JSON.parse(text);
+            } catch {
+                setResults([]);
+                setShowDropdown(true);
+                return;
+            }
 
-            // Now try to parse JSON
-            const data = JSON.parse(text);
-
-            setResults(data?.data || []);
+            setResults(Array.isArray(data?.data) ? data.data : []);
             setShowDropdown(true);
 
-        } catch (err) {
-            console.error("Search failed:", err);
+        } catch {
+            setResults([]);
+            setShowDropdown(true);
+            // Optionally show error to user
+            // console.error("Search failed:", err);
         }
     };
-
 
     const goToCourse = (id) => {
         setQuery('');
@@ -52,12 +58,13 @@ function CourseSearch() {
         <div className={style.searchWrapper}>
             <input
                 type="search"
-                placeholder="🔍 Search courses by title..."
+                placeholder=" Search courses by title..."
                 className={style.searchCours}
                 value={query}
                 onChange={handleSearch}
                 onFocus={() => query && results.length && setShowDropdown(true)}
-                onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 120)}
+                autoComplete="off"
             />
             {showDropdown && (
                 <ul className={style.searchDropdown}>
@@ -68,7 +75,13 @@ function CourseSearch() {
                             <li
                                 key={course.id}
                                 className={style.searchItem}
-                                onClick={() => goToCourse(course.id)}
+                                onMouseDown={() => goToCourse(course.id)} // Use onMouseDown for better UX
+                                tabIndex={0}
+                                onKeyDown={e => {
+                                    if (e.key === 'Enter') goToCourse(course.id);
+                                }}
+                                role="option"
+                                aria-selected="false"
                             >
                                 {course.title}
                             </li>

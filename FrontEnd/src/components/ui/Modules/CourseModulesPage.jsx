@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './CourseModulesPage.module.css';
-import ModuleItem from '../Modules/ModuleItem';
+import ModuleItem from '../modules/ModuleItem';
 
 const CourseModulesPage = () => {
     const { courseId } = useParams();

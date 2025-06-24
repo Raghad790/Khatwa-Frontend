@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const login = async (credentials) => {
@@ -58,32 +58,12 @@ export const useAuth = () => {
   const logout = async () => {
     try {
       await api.post("/auth/logout", {}, { withCredentials: true });
-      setUser(null); 
-      navigate("/login"); 
+      setUser(null);
+      navigate("/login");
     } catch (err) {
       console.error("Logout error", err);
       setUser(null);
       navigate("/login");
-    }
-  };
-
-
-  const [loading, setLoading] = useState(true);
-
-  const checkAuth = async () => {
-    try {
-      const { data } = await api.get("/auth/me");
-      if (data?.user) {
-        setUser(data.user);
-        return data.user;
-      }
-      setUser(null);
-      return null;
-    } catch {
-      setUser(null);
-      return null;
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -92,7 +72,6 @@ export const useAuth = () => {
     login,
     register,
     logout,
-    checkAuth,
     isAuthenticated: !!user,
     loading,
   };

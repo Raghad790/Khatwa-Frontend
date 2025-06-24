@@ -1,109 +1,146 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import style from "./LandingPage.module.css";
+import { ArrowRight, BookOpen, Users, Star, Award } from "lucide-react";
+import styles from "./LandingPage.module.css";
+import heroImage from "../../../assets/images/khHero-sec.png";
 import CourseCards from "../../../components/ui/Courses/StudentCourse/ViewCourses";
-import ViewCategories from '../../../components/ui/Categories/ViewCategories';
 
-export default function LandingPage() {
-    return (
-        <main className={style.landingPage}>
-            {/* Hero Section */}
-            <section className={style.hero}>
-                <h1>Empower Your Learning Journey with Eduflex</h1>
-                <p>Explore top-rated courses and learn at your own pace with expert instructors.</p>
-                <div className={style.heroButtons}>
-                    <Link to="/courses" className={style.primaryBtn}>Discover Courses</Link>
-                    <Link to="/register" className={style.secondaryBtn}>Join for Free</Link>
+const LandingPage = () => {
+  const user = null; // Simulating no user logged in
+
+  const getCtaDestination = () => {
+    if (!user) return "/register";
+    switch (user?.role) {
+      case "admin":
+        return "/dashboard/admin";
+      case "instructor":
+        return "/dashboard/instructor";
+      default:
+        return "/dashboard";
+    }
+  };
+
+  const getCtaText = () => (user ? "Go to Dashboard" : "Explore Courses");
+
+  const handleLoginClick = () => {
+    // navigate("/login");
+    console.log("Navigate to login");
+  };
+
+  return (
+    <div className={styles.landingWrapper}>
+      {/* Decorative Shapes */}
+      <div className={styles.shapesContainer}>
+        <div className={styles.shape1}></div>
+        <div className={styles.shape2}></div>
+      </div>
+
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <div className={styles.heroText}>
+            <div className={styles.badge}>
+              <span>🔥 Trusted by 10,000+ students worldwide</span>
+            </div>
+
+            <h1>
+               Find Your <span className={styles.highlight}>Perfect</span>{" "}
+                Courses & Improve Your Skills
+            </h1>
+
+            <p>
+              Khatwa offers expert-led courses across tech, business, and
+                personal development. Start your journey to excellence with our
+                guided learning paths.
+            </p>
+
+            <div className={styles.heroActions}>
+              <a href={getCtaDestination()} className={styles.primaryBtn}>
+                {getCtaText()} <ArrowRight size={18} />
+              </a>
+              {!user && (
+                <button onClick={handleLoginClick} className={styles.secondaryBtn}>
+                  Log In
+                </button>
+              )}
+            </div>
+
+            <div className={styles.stats}>
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <BookOpen size={24} />
                 </div>
-            </section>
+                <div>
+                  <h4>250+</h4>
+                  <p>Online Courses</p>
+                </div>
+              </div>
 
-            {/* Featured Courses */}
-            <section className={style.featuredCourses}>
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <Users size={24} />
+                </div>
+                <div>
+                  <h4>10K+</h4>
+                  <p>Active Students</p>
+                </div>
+              </div>
+
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>
+                  <Star size={24} />
+                </div>
+                <div>
+                  <h4>4.9</h4>
+                  <p>Average Rating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.heroImage}>
+            <div className={styles.imageWrapper}>
+              <img src={heroImage} alt="Student Learning" />
+              <div className={styles.floatingBadge}>
+                <Award size={20} />
+                <p>Certified Courses</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Wave */}
+        <div className={styles.wave}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              fill="#f9f9ff"
+              fillOpacity="1"
+              d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,224C840,224,960,192,1080,181.3C1200,171,1320,181,1380,186.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* Simple Footer CTA */}
+      <section className={styles.simpleCta}>
+        <h2>Ready to start learning?</h2>
+        <p>Join thousands of learners today.</p>
+        <div className={styles.ctaActions}>
+          <a href="/register" className={styles.primaryBtn}>
+            Register Now <ArrowRight size={18} />
+          </a>
+          <a href="/courses" className={styles.secondaryBtn}>
+            Browse Courses
+          </a>
+        </div>
+      </section>
+          {/* Featured Courses */}
+            <section className={styles.featuredCourses}>
                 <h2>Explore Courses</h2>
-                <div className={style.courseGrid}>
+                <div className={styles.courseGrid}>
                     <CourseCards />
                 </div>
             </section>
+    </div>
+  );
+};
 
-            {/* How It Works */}
-            <section className={style.howItWorks}>
-                <h2>How Eduflex Works</h2>
-                <div className={style.steps}>
-                    <div className={style.step}><span>📝</span><p>Sign Up</p></div>
-                    <div className={style.step}><span>🔍</span><p>Browse Courses</p></div>
-                    <div className={style.step}><span>🎓</span><p>Start Learning</p></div>
-                    <div className={style.step}><span>📜</span><p>Earn Certificates</p></div>
-                </div>
-            </section>
-
-            {/* Testimonials */}
-            <section className={style.testimonials}>
-                <h2>What Our Students Say</h2>
-                <div className={style.testimonialGrid}>
-                    <div className={style.testimonial}>
-                        <img className={style.avatar} src="https://i.pravatar.cc/80?img=15" alt="Amina" />
-                        <p>“Eduflex gave me the confidence and skills to switch careers. The instructors are amazing!”</p>
-                        <h4>Amina</h4>
-                        <small>🗓️ Joined: Jan 2024 • 👍 134 likes</small>
-                        <p className={style.rating}>⭐⭐⭐⭐⭐</p>
-                        <span className={style.badge}>Career Switcher</span>
-                    </div>
-                    <div className={style.testimonial}>
-                        <img className={style.avatar} src="https://i.pravatar.cc/80?img=23" alt="Yousef" />
-                        <p>“The courses are practical and the platform is very easy to use. I highly recommend it.”</p>
-                        <h4>Yousef</h4>
-                        <small>🗓️ Joined: Nov 2023 • 👍 98 likes</small>
-                        <p className={style.rating}>⭐⭐⭐⭐⭐</p>
-                        <span className={style.badge}>UI/UX Enthusiast</span>
-                    </div>
-                    <div className={style.testimonial}>
-                        <img className={style.avatar} src="https://i.pravatar.cc/80?img=30" alt="Leila" />
-                        <p>“Learning with Eduflex felt like having a mentor at every step. I now work as a developer!”</p>
-                        <h4>Leila</h4>
-                        <small>🗓️ Joined: Feb 2024 • 👍 156 likes</small>
-                        <p className={style.rating}>⭐⭐⭐⭐⭐</p>
-                        <span className={style.badge}>Junior Developer</span>
-                    </div>
-                </div>
-            </section>
-
-            {/* Categories */}
-            <section>
-                <div className={style.categoryGrid}>
-                    <ViewCategories />
-                </div>
-            </section>
-
-            {/* Why Eduflex */}
-            <section className={style.whyEduflex}>
-                <h2>Why Choose Eduflex?</h2>
-                <ul className={style.reasons}>
-                    <li>✅ Learn Anywhere, Anytime</li>
-                    <li>✅ Lifetime Access</li>
-                    <li>✅ Industry Expert Instructors</li>
-                    <li>✅ Certificate of Completion</li>
-                </ul>
-            </section>
-
-            {/* Newsletter Signup */}
-            <section className={style.newsletter}>
-                <h2>Stay Updated</h2>
-                <p>Subscribe to our newsletter for updates and tips.</p>
-                <form className={style.newsletterForm}>
-                    <input type="email" placeholder="Enter your email" />
-                    <button type="submit">Subscribe</button>
-                </form>
-            </section>
-
-            {/* Final CTA */}
-            <section className={style.finalCTA}>
-                <h2>Ready to start learning?</h2>
-                <p>Join thousands of learners today.</p>
-                <div>
-                    <Link to="/register" className={style.primaryBtn}>Register Now</Link>
-                    <Link to="/courses" className={style.secondaryBtn}>Browse Courses</Link>
-                </div>
-            </section>
-        </main>
-    );
-}
+export default LandingPage;

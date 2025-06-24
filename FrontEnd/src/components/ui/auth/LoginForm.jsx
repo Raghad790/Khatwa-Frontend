@@ -3,6 +3,8 @@ import styles from './Login.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../../../hooks/Auth/userAuth';
 import { MdErrorOutline, MdEmail, MdLock } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
+import khlogo from '../../../assets/images/khlogo.png';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ function Login() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, loginWithGoogle } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -44,18 +46,46 @@ function Login() {
         }
     };
 
+    // Google sign-in handler
+    const handleGoogleLogin = async (e) => {
+        e.preventDefault();
+        if (isLoading) return;
+        setIsLoading(true);
+        setError('');
+        try {
+            const user = await loginWithGoogle();
+            switch (user.role) {
+                case 'admin':
+                    navigate('/admin/dashboard');
+                    break;
+                case 'instructor':
+                    navigate('/instructor/dashboard');
+                    break;
+                case 'student':
+                    navigate('/student/dashboard');
+                    break;
+                default:
+                    setError('Unknown role. Access denied.');
+            }
+        } catch (err) {
+            setError(err.message || 'Google login failed.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className={styles.pageContainer}>
             <div className={styles.authWrapper}>
                 {/* Left Side - Form */}
                 <div className={styles.formSide}>
                     <div className={styles.logoContainer}>
-                        <img src="/khlogo.png" alt="Khatwa" className={styles.logo} />
+                    <img src={khlogo} alt="Khatwa" className={styles.logo} />
                         <h3 className={styles.logoText}>KHATWA</h3>
                     </div>
                     <div className={styles.loginCard}>
-                        <h2 className={styles.title}>Welcome Back</h2>
-                        <p className={styles.subtitle}>Please enter your credentials</p>
+                        <h2 className={styles.title}>Welcome Back!</h2>
+                        <p className={styles.subtitle}>Log in to continue your learning journey</p>
                         {error && (
                             <div className={styles.error}>
                                 <MdErrorOutline size={18} />
@@ -64,32 +94,26 @@ function Login() {
                         )}
                         <form className={styles.form} onSubmit={handleLogin}>
                             <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <MdEmail size={18} />
-                                    <span>Email</span>
-                                </label>
+                                <MdEmail className={styles.inputIcon} />
                                 <input
                                     type="email"
                                     name="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="Email Address"
+                                    placeholder="your.email@example.com"
                                     className={styles.input}
                                     required
                                     disabled={isLoading}
                                 />
                             </div>
                             <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <MdLock size={18} />
-                                    <span>Password</span>
-                                </label>
+                                <MdLock className={styles.inputIcon} />
                                 <input
                                     type="password"
                                     name="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Password"
+                                    placeholder="••••••••"
                                     className={styles.input}
                                     required
                                     minLength={6}
@@ -107,8 +131,24 @@ function Login() {
                                         Signing in...
                                     </span>
                                 ) : (
-                                    'Sign In'
+                                    <>
+                                        Log In
+                                        <span className={styles.arrow}>&rarr;</span>
+                                    </>
                                 )}
+                            </button>
+                            <div className={styles.divider}>
+                                <span>OR</span>
+                            </div>
+                            {/* Google Button */}
+                            <button
+                                type="button"
+                                className={styles.googleButton}
+                                onClick={handleGoogleLogin}
+                                disabled={isLoading}
+                            >
+                                <FcGoogle className={styles.googleIcon} />
+                                Continue with Google
                             </button>
                             <div className={styles.signupPrompt}>
                                 Don't have an account? <Link to="/register" className={styles.signupLink}>Sign up</Link>
@@ -119,22 +159,22 @@ function Login() {
                 {/* Right Side - Visual */}
                 <div className={styles.imageSide}>
                     <div className={styles.contentWrapper}>
-                        <h2 className={styles.welcomeTitle}>Find Your Perfect Courses & Improve Your Skills</h2>
+                        <h2 className={styles.welcomeTitle}>Welcome to Khatwa!</h2>
                         <p className={styles.welcomeText}>
-                            Make your learning count. Get unlimited and instant access to online courses from top instructors.
+                            Your journey to new skills and knowledge starts here. Log in to continue learning or create an account to get started.
                         </p>
                         <div className={styles.features}>
                             <div className={styles.featureItem}>
-                                <div className={styles.featureIcon}>★</div>
-                                <div className={styles.featureText}>Rated 4.9/5 by students</div>
+                                <div className={styles.featureCheck}>✓</div>
+                                <div className={styles.featureText}>Expert-led courses</div>
                             </div>
                             <div className={styles.featureItem}>
-                                <div className={styles.featureIcon}>✓</div>
-                                <div className={styles.featureText}>Expert instructors</div>
+                                <div className={styles.featureCheck}>✓</div>
+                                <div className={styles.featureText}>Interactive learning</div>
                             </div>
                             <div className={styles.featureItem}>
-                                <div className={styles.featureIcon}>✓</div>
-                                <div className={styles.featureText}>Modern interactive platform</div>
+                                <div className={styles.featureCheck}>✓</div>
+                                <div className={styles.featureText}>Flexible study plans</div>
                             </div>
                         </div>
                     </div>

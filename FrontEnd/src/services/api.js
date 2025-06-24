@@ -19,7 +19,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 && window.location.href !== "/login" ){
       // Optionally attempt token refresh here before redirecting
       window.location.href = "/login";
     }

@@ -1,26 +1,30 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Register from './pages/auth/RegisterPage';
-import Login from './pages/auth/LoginPage';
-import Dashboard from './pages/Student/Dashboard';
-import './App.css';
-import AuthProvider from "./context/AuthProvider";
+
 import ErrorBoundary from './components/ui/errors/ErrorBoundary';
+import ProtectedRoute from './components/ui/Routes/ProtectRoutes.jsx';
+import AuthProvider from './context/AuthProvider';
+import { DashboardDataProvider } from './context/DashboardDataContext.jsx';
+
+// Public pages
 import Home from './pages/Home/Home';
-import CourseDetails from './components/ui/Courses/StudentCourse/CourseDetails.jsx';
+import Login from './pages/Auth/LoginPage';
+import Register from './pages/Auth/RegisterPage';
+import AboutUs from './pages/Others/About.jsx';
+import ContactUs from './pages/Others/Contact.jsx';
+
+// Student pages
+import Dashboard from './pages/Student/Dashboard';
 import MyCourses from './pages/Student/MyCourses';
-import Categories from './pages/Categories/Categories';
+import MyProfile from './pages/Student/MyProfile.jsx';
+import RecommendedCourses from './pages/Courses/Recommended.jsx';
+import CourseDetails from './components/ui/Courses/StudentCourse/CourseDetails.jsx';
 import ViewCoursesPage from './pages/Courses/ViewCourses.jsx';
 import CourseModulePage from './pages/Modules/CourseModulesPage.jsx';
-import { DashboardDataProvider } from './context/DashboardDataContext.jsx';
-import RecommendedCourses from './pages/Courses/Recommended.jsx';
-import MyProfile from './pages/Student/MyProfile.jsx';
-import SettingsPage from './pages/Settings/Settings.jsx';
-import AboutUs from './pages/Others/About.jsx';
-import ContactUs from "./pages/Others/Contact.jsx"
 import Lessons from './pages/Lessons/Lessons.jsx';
-import ViewCategories from './pages/Categories/ViewCategories.jsx';
-import InstructorDashboard from "./pages/Instructor/InstructorDashboard.jsx"
+
+// Instructor pages
+import InstructorDashboard from './pages/Instructor/InstructorDashboard.jsx';
 import CourseWizard from './pages/Instructor/Cousres/NewCoursePage.jsx';
 import ViewCourses from './pages/Instructor/Cousres/ViewCourses.jsx';
 import CoursesPreview from './pages/Instructor/Cousres/CoursePreview.jsx';
@@ -28,7 +32,18 @@ import EditCoursePage from './pages/Instructor/Cousres/EditCoursePage.jsx';
 import InstrcutorProfile from './pages/Instructor/Profile/InstructoreProfile.jsx';
 import InstructorViewCategories from './pages/Categories/InstructorViewCategory.jsx';
 import InstructorCategories from './pages/Categories/InstructorCategory.jsx';
-import SubmissionListPage from "./pages/Instructor/SubmissionListPage.jsx"
+import SubmissionListPage from './pages/Instructor/SubmissionListPage.jsx';
+
+// Admin pages
+import AdminDashboard from './pages/Admin/Dashboard/AdminDashboard.jsx';
+import AdminViewCategories from './pages/Admin/Categories/AdminViewCategories.jsx';
+import ViewUsers from './pages/Admin/UsersView/ViewUsers.jsx';
+import ViewUserProfilePage from './pages/Admin/UsersView/ViewUserProfile.jsx';
+import AddUsersPage from './pages/Admin/UsersView/AddUserPage.jsx';
+import ReviewPendingCoursesPages from './pages/Admin/Courses/ReviewPendingCoursesPage.jsx';
+import AdminCoursesTablePages from './pages/Admin/Courses/AdminCoursesTablePage.jsx';
+import AdminProfile from './pages/Admin/Profile/adminProfile.jsx';
+import AdminCategoriesManager from './pages/Admin/Categories/AdminCategoriesManager.jsx';
 
 function App() {
   return (
@@ -36,49 +51,60 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/my-courses" element={<MyCourses />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<ContactUs />} />
 
-            <Route path="/course" element={<ViewCoursesPage />} />
-            <Route path="/profile" element={<MyProfile />} />
-            <Route path="/Instructor-profile" element={<InstrcutorProfile />} />
-            <Route path="/course/recommended" element={<RecommendedCourses />} />
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/lessons/:lessonId" element={<Lessons />} />
-            <Route path="/course-wizard" element={<CourseWizard />} />
-            <Route path="/edit-course/:courseId" element={<EditCoursePage />} />
-            {/* <Route path="/lessons/edit/:lessonId" element={<Editlessons />} /> */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/course/:id" element={<CourseDetails />} />
+
+            {/* Student Routes */}
+            <Route path="/my-courses" element={<ProtectedRoute><MyCourses /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
+            <Route path="/course/recommended" element={<ProtectedRoute><RecommendedCourses /></ProtectedRoute>} />
+            <Route path="/course" element={<ProtectedRoute><ViewCoursesPage /></ProtectedRoute>} />
+            <Route path="/courses/:courseId/modules" element={<ProtectedRoute><CourseModulePage /></ProtectedRoute>} />
+            <Route path="/lessons/:lessonId" element={<ProtectedRoute><Lessons /></ProtectedRoute>} />
             <Route
               path="/student/Dashboard"
               element={
-                <DashboardDataProvider>
-                  <Dashboard />
-                </DashboardDataProvider>
+                <ProtectedRoute>
+                  <DashboardDataProvider>
+                    <Dashboard />
+                  </DashboardDataProvider>
+                </ProtectedRoute>
               }
             />
-            <Route path="/courses/:courseId/modules" element={<CourseModulePage />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/course/:id" element={<CourseDetails />} />
 
-            // Add this route with your other instructor routes
-            <Route
-              path="/instructor/courses/:courseId/assignments/:assignmentId/submissions"
-              element={<SubmissionListPage />}
-            />
-            <Route path="/categories" element={<ViewCategories />} />
-            <Route path="/categories/:id" element={<Categories />} />
-            <Route path="/categories-instructor" element={<InstructorViewCategories />} />
-            <Route path="/categories-instructor/:id" element={<InstructorCategories />} />
+            {/* Instructor Routes */}
+            <Route path="/instructor/Dashboard" element={<ProtectedRoute><InstructorDashboard /></ProtectedRoute>} />
+            <Route path="/course-wizard" element={<ProtectedRoute><CourseWizard /></ProtectedRoute>} />
+            <Route path="/edit-course/:courseId" element={<ProtectedRoute><EditCoursePage /></ProtectedRoute>} />
+            <Route path="/Instructor-profile" element={<ProtectedRoute><InstrcutorProfile /></ProtectedRoute>} />
+            <Route path="/instructorcourses" element={<ProtectedRoute><ViewCourses /></ProtectedRoute>} />
+            <Route path="/courses/:courseId" element={<ProtectedRoute><CoursesPreview /></ProtectedRoute>} />
+            <Route path="/instructor/courses/:courseId/assignments/:assignmentId/submissions" element={<ProtectedRoute><SubmissionListPage /></ProtectedRoute>} />
+            <Route path="/categories-instructor" element={<ProtectedRoute><InstructorViewCategories /></ProtectedRoute>} />
+            <Route path="/categories-instructor/:id" element={<ProtectedRoute><InstructorCategories /></ProtectedRoute>} />
 
-            <Route path="/courses/:courseId" element={<CoursesPreview />} />
-            <Route path="/instructor/Dashboard" element={<InstructorDashboard />} />
-            <Route path="/instructorcourses" element={<ViewCourses />} />
+            {/* Admin Routes */}
+            <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+            <Route path="/admin/categories" element={<ProtectedRoute><AdminViewCategories /></ProtectedRoute>} />
+            <Route path="/admin/categories/manager" element={<ProtectedRoute><AdminCategoriesManager /></ProtectedRoute>} />
+            <Route path="/admin/users" element={<ProtectedRoute><ViewUsers /></ProtectedRoute>} />
+            <Route path="/admin/users/:id" element={<ViewUserProfilePage />} />
+            <Route path="/admin/users/add" element={<AddUsersPage />} />
+            <Route path="/admin/courses/pending" element={<ReviewPendingCoursesPages />} />
+            <Route path="/admin/courses" element={<AdminCoursesTablePages />} />
+            <Route path="/admin-profile" element={<ProtectedRoute><AdminProfile /></ProtectedRoute>} />
 
-
+            
+            
+            {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
+
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -1,22 +1,21 @@
-/* --- Base Styles --- */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -260px;
+  left: 0;
   width: 260px;
-  height: 96vh;
-  background: #ffffff;
-  color: #1b6cdd;
-  box-shadow: 2px 0 12px rgba(27, 108, 221, 0.3);
-  transition: left 0.3s ease;
-  z-index: 1000;
+  height: 100vh;
+  background: var(--light-bg);
+  color: var(--primary);
+  box-shadow: var(--shadow-lg);
+  z-index: 1500;
   display: flex;
   flex-direction: column;
-  padding-top: 1.5rem;
+  padding-top: var(--spacing-xl);
+  transition: transform 0.32s var(--transition-fast);
+  transform: translateX(-100%);
 }
-
 .sidebar.open {
-  left: 0;
+  transform: translateX(0);
 }
 
 .overlay {
@@ -25,92 +24,138 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 999;
+  background: rgba(40, 40, 60, 0.35);
+  z-index: 1400;
+  display: block;
+}
+
+/* --- Toggle Button --- */
+.mobileToggle {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.3rem;
+  z-index: 1600;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  display: block;
+  transition: background var(--transition-fast);
+}
+
+/* --- Close button always visible inside sidebar --- */
+.closeBtn {
+  display: block;
+  position: absolute;
+  top: 1.3rem;
+  right: 1.3rem;
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0.2rem;
 }
 
 /* --- Profile Section --- */
 .profile {
   display: flex;
   align-items: center;
-  padding: 0 1.5rem 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  gap: var(--spacing-md);
+  padding: 0 var(--spacing-lg) var(--spacing-md);
+  border-bottom: 1px solid var(--divider-color);
 }
-
 .avatar {
-  background: #1b6cdd;
+  background: var(--gradient-primary);
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.6rem;
-  color: white;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
   user-select: none;
+  box-shadow: var(--shadow-md);
 }
-
 .profile h3 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
+  color: var(--primary);
 }
-
 .profile p {
   margin: 0;
   font-size: 0.85rem;
-  color: #333;
+  color: var(--subtext-color);
 }
 
 /* --- Navigation --- */
 .nav {
   flex-grow: 1;
   overflow-y: auto;
-  margin-top: 1rem;
+  margin-top: var(--spacing-md);
 }
-
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .menuItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem var(--spacing-xl);
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  color: #1b6cdd;
+  border-radius: var(--radius-md);
+  position: relative;
+  color: var(--text-medium);
+  background: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
-
-.menuItem:hover {
-  background-color: #f0f4fc;
+.menuItem:hover,
+.menuItem:focus-within {
+  background: var(--gradient-light);
+  color: var(--primary);
 }
-
+.menuItem:hover .icon,
+.menuItem:focus-within .icon {
+  color: var(--primary);
+}
+.icon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-medium);
+  transition: color var(--transition-fast);
+}
 .link {
   display: flex;
   align-items: center;
   color: inherit;
   text-decoration: none;
   flex-grow: 1;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
-
-.icon {
-  margin-right: 1rem;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
+.menuText {
+  white-space: nowrap;
 }
-
 .active {
-  background-color: #1b6cdd;
+  color: #fff;
+  background: var(--gradient-primary);
   font-weight: 700;
-  color: #ffffff;
-  border-radius: 5px;
+  box-shadow: 0 3px 15px 0 rgba(131,103,255,0.07);
+}
+.active .icon {
+  color: #fff;
 }
 
 /* --- Submenu --- */
@@ -124,7 +169,6 @@ ul {
   display: flex;
   align-items: center;
 }
-
 .subMenu {
   background: #f7f9ff;
   margin: 0 1.5rem 1rem;
@@ -132,90 +176,64 @@ ul {
   overflow: hidden;
   transition: max-height 0.3s ease;
 }
-
 .subMenuItem {
   display: block;
   padding: 0.6rem 1rem;
-  color: #1b6cdd;
+  color: var(--primary);
   font-size: 0.95rem;
   text-decoration: none;
   border-radius: 3px;
   transition: background-color 0.2s ease;
 }
-
 .subMenuItem:hover {
-  background-color: #d8e7ff;
-  color: #1b6cdd;
+  background-color: #e8e5fa;
+  color: var(--primary);
 }
-
 .activeSub {
-  background-color: #1b6cdd;
-  color: #ffffff;
+  background: var(--gradient-primary);
+  color: #fff;
   font-weight: 600;
 }
 
 /* --- Logout Button --- */
 .logout {
-  background: #1b6cdd;
+  background: var(--primary);
   border: none;
   color: white;
   font-weight: 700;
   padding: 1rem;
-  width: 100%;
+  width: 85%;
+  margin: var(--spacing-lg) auto var(--spacing-lg) auto;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
-
 .logout:hover {
-  background: #c62828;
+  background: var(--secondary);
+  box-shadow: var(--shadow-md);
 }
 
-/* --- Toggle Button (Always Visible) --- */
-/* --- Toggle Button Updated Styles --- */
-.mobileToggle {
-  position: fixed;
-  top: 4rem; /* Increased from 1rem to lower the button */
-  left: 1rem;
-  z-index: 1100;
-  background: #1b6cdd;
-  border: 1px solid white;
-  color: white; /* Make the icon white */
-  font-size: 2rem;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  display: block;
-}
-
-
-/* --- Content Wrapper (Optional) --- */
-.main-content,
-.hero,
-main {
-  transition: margin-left 0.3s ease;
-}
-
-/* Remove default margin shift even on desktop */
-@media (min-width: 768px) {
+/* --- Responsive tweaks --- */
+@media (max-width: 600px) {
   .sidebar {
-    /* DO NOT override left: 0 here */
+    width: 85vw;
+    min-width: 0;
+    padding-top: var(--spacing-xl);
+    font-size: 0.97rem;
   }
-
-  .mobileToggle {
-    display: block;
+  .menuItem, .logout {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+    font-size: 0.98rem;
   }
-
-  .overlay {
-    display: block;
-  }
-
-  .main-content,
-  .hero,
-  main {
-    margin-left: 0;
+  .profile {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Footer from "../../../layout/StudentLayout/footer";
 import Header from "../../../layout/StudentLayout/header";
 import style from "./CourseDetails.module.css";
-import fallbackImage from "../../../../assets/images/card1.jpg";
+import fallbackImage from "../../../../assets/images/khacademic.jpg";
 import EnrollButton from "../../enrollments/EnrollButton";
 import ModuleList from "../../modules/ModuleList";
 
@@ -52,7 +52,7 @@ function CourseDetails() {
 
         {course && (
           <>
-            {/* Redesigned Course Header */}
+            {/* Edudeme/Khatwa-Inspired Course Header */}
             <section className={style.courseHeader}>
               <div className={style.thumbnailWrapper}>
                 <img
@@ -62,26 +62,24 @@ function CourseDetails() {
                   onError={(e) => (e.target.src = fallbackImage)}
                 />
               </div>
-
               <div className={style.courseInfo}>
+                <span className={style.badge}>Khatwa Course</span>
                 <h1 className={style.courseTitle}>{course.title}</h1>
                 <p className={style.courseDescription}>{course.description}</p>
-
                 <div className={style.metaGrid}>
                   <div className={style.metaItem}>
-                    <strong>Instructor:</strong>
-                    <span>{course.instructor_name || "Unknown"}</span>
+                    <span className={style.metaLabel}>Instructor</span>
+                    <span className={style.metaValue}>{course.instructor_name || "Unknown"}</span>
                   </div>
                   <div className={style.metaItem}>
-                    <strong>Category:</strong>
-                    <span>{course.category_name || "Uncategorized"}</span>
+                    <span className={style.metaLabel}>Category</span>
+                    <span className={style.metaValue}>{course.category_name || "Uncategorized"}</span>
                   </div>
                   <div className={style.metaItem}>
-                    <strong>Level:</strong>
-                    <span>{course.level || "All levels"}</span>
+                    <span className={style.metaLabel}>Level</span>
+                    <span className={style.metaValue}>{course.level || "All levels"}</span>
                   </div>
                 </div>
-
                 <EnrollButton
                   courseId={course.id}
                   className={style.enrollButton}
@@ -89,10 +87,10 @@ function CourseDetails() {
               </div>
             </section>
 
-            {/* Redesigned Course Content */}
+            {/* Edudeme/Khatwa-Inspired Course Content */}
             <section className={style.courseContent}>
               <header className={style.contentHeader}>
-                <h2>Course Content</h2>
+                <h2 className={style.contentTitle}>Course Content</h2>
                 <span className={style.moduleCount}>
                   {modules.length} Modules &bull;{" "}
                   {modules.reduce(
@@ -109,6 +107,7 @@ function CourseDetails() {
                   progress: calculateModuleProgress(module),
                 }))}
                 onModuleClick={handleModuleClick}
+                expandedModule={expandedModule}
               />
 
               {expandedModule && (
@@ -153,7 +152,7 @@ const PlayIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     className={style.playIcon}
   >
-    <path d="M8 5V19L19 12L8 5Z" fill="#5624D0" />
+    <path d="M8 5V19L19 12L8 5Z" fill="#7f56da" />
   </svg>
 );
 

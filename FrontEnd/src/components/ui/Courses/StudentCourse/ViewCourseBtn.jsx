@@ -1,10 +1,8 @@
-// src/components/ui/enrollments/ViewCourseButton.jsx
-
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import style from "./ViewCourseButton.module.css"; // Create this CSS file if needed
+import style from "./ViewCourseButton.module.css";
 
-const ViewCourseButton = ({ courseId }) => {
+const ViewCourseButton = ({ courseId, className }) => {
     const navigate = useNavigate();
 
     const handleView = () => {
@@ -12,14 +10,15 @@ const ViewCourseButton = ({ courseId }) => {
     };
 
     return (
-        <button className={style.enrollButton} onClick={handleView}>
+        <button className={`${style.enrollButton} ${className || ""}`} onClick={handleView}>
             View
         </button>
     );
 };
 
 ViewCourseButton.propTypes = {
-    courseId: PropTypes.number.isRequired,
+    courseId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    className: PropTypes.string,
 };
 
 export default ViewCourseButton;

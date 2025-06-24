@@ -5,18 +5,21 @@
 
 .searchCours {
     width: 250px;
-  padding: 10px;
-  border-radius: 30px;
-  border: 1px solid white;
-  background-color: white;
-  color: rgba(27, 108, 221, 0.995);
-  font-weight: 500;
-  transition: border 0.3s ease, background-color 0.3s ease;
+    padding: 10px 16px;
+    border-radius: 30px;
+    border: 1.5px solid #e1e8fc;
+    background-color: #fff;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: border 0.3s, background-color 0.3s;
+    box-shadow: 0 2px 8px rgba(127,86,218,0.03);
+    outline: none;
 }
 
 .searchCours:focus {
-    border-color: #007bff;
-    outline: none;
+    border-color: #7f56da;
+    background-color: #f6f4fd;
 }
 
 .searchDropdown {
@@ -24,28 +27,50 @@
     top: 110%;
     left: 0;
     right: 0;
-    background: rgba(27, 108, 221, 0.995);;;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border: 1.5px solid #e1e8fc;
+    border-radius: 13px;
+    box-shadow: 0 8px 22px rgba(127,86,218,0.13);
     z-index: 10;
-    max-height: 220px;
+    max-height: 240px;
     overflow-y: auto;
+    margin-top: 4px;
+    padding: 0;
 }
 
 .searchItem {
-    padding: 0.6rem 1rem;
+    padding: 0.7rem 1.1rem;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.18s, color 0.18s;
+    color: #3b3663;
+    font-size: 1rem;
+    border: none;
+    background: none;
 }
 
-.searchItem:hover {
-    background-color: #f1f1f1;
-color: rgba(27, 108, 221, 0.995);
+.searchItem:hover,
+.searchItem:focus {
+    background-color: #f6f4fd;
+    color: #7f56da;
+    outline: none;
 }
 
 .noResult {
-    padding: 0.8rem 1rem;
+    padding: 0.8rem 1.1rem;
     color: #999;
     font-style: italic;
+    background: #fff;
+    border-radius: 0 0 13px 13px;
+    font-size: 0.97rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .searchWrapper {
+        max-width: 100%;
+    }
+    .searchCours {
+        width: 100%;
+        font-size: 0.98rem;
+    }
 }

@@ -1,6 +1,7 @@
 .aboutPage {
   background: #f9f9ff;
   min-height: 100vh;
+  font-family: var(--font-family, 'Poppins', sans-serif);
 }
 
 .heroSection {

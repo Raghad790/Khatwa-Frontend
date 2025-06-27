@@ -1,83 +1,209 @@
-.header {
-  padding: 10px 20px;
-  background-color: rgba(27, 108, 221, 0.995); /* Unified with hero */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  align-items: center;
-  color: white;
+/* Top Bar styling */
+.topBar {
+  background: linear-gradient(90deg, #7f56da, #ea6fb8);
+  color: #fff;
+  padding: 8px 0;
+  font-size: 14px;
 }
 
-.nav {
+.topBarContainer {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  padding: 0 2rem;
+}
+
+.contactInfo {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.contactLink {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcon {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.15rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.socialIcon:hover {
+  color: #e9d8fd;
+  transform: translateY(-2px) scale(1.08);
+}
+
+/* Main Header styling */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(127,86,218,0.06);
+  transition: all 0.3s ease;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  padding: 0.8rem 2rem;
 }
 
 .rightHeader {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 18px;
+}
+
+.img {
+  width: 47px;
+  height: 47px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #7f56da;
+  background: #fff;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(127,86,218,0.13);
+  transition: transform 0.18s;
+}
+
+.img:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.searchCours {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 230px;
+  padding: 9px 16px;
+  border-radius: 24px;
+  border: 2px solid #e0e0e0;
+  background: #f8f9fa;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.searchCours::placeholder {
+  color: #b39ddb;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.searchCours:focus {
+  border-color: #7f56da;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(127, 86, 218, 0.08);
+}
+
+.searchCours:hover {
+  border-color: #ea6fb8;
+  background: #f3eaff;
 }
 
 .leftHeader {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.searchCours {
-  width: 250px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  border: 1px solid white;
-  background-color: #ffffff;
-  color: rgba(27, 108, 221, 0.995);
-  font-weight: 500;
-  transition: border 0.3s ease, background-color 0.3s ease;
-}
-
-.searchCours::placeholder {
-  color: rgba(27, 108, 221, 0.7);
-}
-
-.searchCours:hover {
-  border-color: #ffffff;
-  background-color: #f0f8ff;
+  gap: 22px;
 }
 
 .leftHeader a {
   text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  color: #444;
+  font-weight: 700;
+  font-size: 1.06rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: color 0.22s, background 0.22s;
+  position: relative;
+  letter-spacing: 0.2px;
 }
 
 .leftHeader a:hover {
-  color: #e3f2ff; /* Brighter on hover */
+  color: #7f56da;
+  background: rgba(127, 86, 218, 0.10);
 }
 
-.person {
-  border-radius: 50%;
-  border: 1px solid white;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .nav {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 0.8rem 1rem;
+  }
+  .rightHeader {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+  }
+  .leftHeader {
+    width: 100%;
+    gap: 15px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .searchCours {
+    width: 135px;
+  }
 }
 
-.person:hover {
-  transform: scale(1.1);
+@media (max-width: 600px) {
+  .header {
+    padding: 4px 2vw;
+  }
+  .nav {
+    padding: 0.6rem 0.3rem;
+  }
+  .img {
+    width: 32px;
+    height: 32px;
+  }
+  .searchCours {
+    width: 85px;
+    padding: 7px 8px;
+    font-size: 0.97rem;
+  }
+  .leftHeader a {
+    padding: 7px 8px;
+    font-size: 0.97rem;
+  }
+  .topBarContainer {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 1rem;
+  }
+  .contactInfo {
+    gap: 0.6rem;
+    font-size: 13px;
+  }
+  .socialIcons {
+    gap: 0.7rem;
+  }
 }

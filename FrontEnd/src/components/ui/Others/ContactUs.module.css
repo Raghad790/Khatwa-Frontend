@@ -2,19 +2,18 @@
   max-width: 700px;
   margin: 2rem auto;
   padding: 1rem 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family, 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
   color: #333;
   background: #fafafa;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 0 30px rgba(127,86,218,0.09);
 }
 
 .heading {
   text-align: center;
-  color: #7f56da;
   margin-bottom: 1rem;
   font-size: 2.3rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -1px;
   background: linear-gradient(90deg, #7f56da, #ea6fb8);
   -webkit-background-clip: text;
@@ -32,9 +31,10 @@
 .contactForm label {
   display: block;
   margin: 0.75rem 0 0.25rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #7f56da;
   letter-spacing: 0.5px;
+  font-size: 1.01rem;
 }
 
 .required {
@@ -45,14 +45,15 @@
 .contactForm input,
 .contactForm textarea {
   width: 100%;
-  padding: 0.6rem 0.9rem;
-  font-size: 1.05rem;
+  padding: 0.88rem 1.1rem;
+  font-size: 1.08rem;
   border: 1.5px solid #ccc;
-  border-radius: 6px;
+  border-radius: 10px;
   box-sizing: border-box;
   transition: border-color 0.3s, box-shadow 0.3s;
   background: #f8f6ff;
   margin-bottom: 2px;
+  font-family: var(--font-family, 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
 }
 
 .contactForm input:focus,
@@ -70,9 +71,10 @@
 
 .errorText {
   color: #e74c3c;
-  font-size: 0.89rem;
-  margin-top: 0.15rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.93rem;
+  margin-top: 0.12rem;
+  margin-bottom: 0.23rem;
+  padding-left: 3px;
 }
 
 .btnSubmit {
@@ -80,45 +82,49 @@
   width: 100%;
   background: linear-gradient(90deg, #7f56da, #ea6fb8);
   color: white;
-  padding: 0.85rem;
-  font-size: 1.12rem;
+  padding: 1.05rem;
+  font-size: 1.17rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 0.2px;
   transition: background 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 12px rgba(127,86,218,0.13);
+  box-shadow: 0 7px 18px rgba(127,86,218,0.13);
 }
 
 .btnSubmit:hover {
   background: linear-gradient(90deg, #ea6fb8 10%, #7f56da 90%);
-  box-shadow: 0 7px 18px rgba(127,86,218,0.16);
+  box-shadow: 0 7px 22px rgba(127,86,218,0.16);
 }
 
 .successMessage {
   background: #eafaf2;
   border: 1px solid #b0f0c7;
   color: #23834a;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  padding: 1.05rem;
+  border-radius: 10px;
+  margin-bottom: 1.05rem;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.06rem;
 }
 
 .contactInfo {
   margin-top: 2.5rem;
   background: #f4eaff;
-  padding: 1rem 1.5rem;
-  border-radius: 7px;
-  font-size: 1.05rem;
+  padding: 1.1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.07rem;
   color: #6547a1;
-  box-shadow: 0 2px 10px rgba(127,86,218,0.07);
+  box-shadow: 0 3px 13px rgba(127,86,218,0.08);
 }
 
 .contactInfo h2 {
   margin-bottom: 1rem;
   color: #7f56da;
   font-size: 1.3rem;
+  font-weight: 800;
 }
 
 @media (max-width: 576px) {
@@ -131,5 +137,9 @@
   .contactInfo {
     padding: 0.8rem 0.8rem;
     font-size: 0.96rem;
+  }
+  .btnSubmit {
+    font-size: 1.03rem;
+    padding: 0.8rem;
   }
 }

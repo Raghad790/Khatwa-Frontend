@@ -44,7 +44,6 @@ const ProgressChart = ({ courseId = null }) => {
         };
     }, [courseId]);
 
-    // Handle chart type change
     const handleChartTypeChange = (type) => {
         if (chartInstance.current) {
             chartInstance.current.destroy();
@@ -63,18 +62,24 @@ const ProgressChart = ({ courseId = null }) => {
             {
                 label: 'Course Progress (%)',
                 data: enrollmentData.map(item => item.progress),
-                backgroundColor: '#4f46e5',
-                borderColor: '#4f46e5',
-                borderWidth: 1
+                backgroundColor: 'rgba(127,86,218,0.87)',
+                borderColor: '#7f56da',
+                borderWidth: 2,
+                borderRadius: 8,
+                maxBarThickness: 36,
             },
             {
                 label: 'Days Since Enrollment',
                 data: enrollmentData.map(item => item.days_enrolled),
-                backgroundColor: '#f59e0b',
-                borderColor: '#f59e0b',
-                borderWidth: 1,
+                backgroundColor: 'rgba(234,111,184,0.23)',
+                borderColor: '#ea6fb8',
+                borderWidth: 3,
                 type: 'line',
-                yAxisID: 'y1'
+                yAxisID: 'y1',
+                tension: 0.37,
+                pointRadius: 4,
+                pointBackgroundColor: '#ea6fb8',
+                fill: false,
             }
         ]
     };
@@ -82,32 +87,50 @@ const ProgressChart = ({ courseId = null }) => {
     const options = {
         responsive: true,
         maintainAspectRatio: false,
-        animation: {
-            duration: 0 // Disable animations to prevent canvas issues
-        },
+        layout: { padding: { top: 16, right: 16, bottom: 24, left: 8 } },
+        animation: { duration: 500 },
         scales: {
+            x: {
+                ticks: {
+                    color: '#7f56da',
+                    font: { weight: 600 }
+                },
+                grid: { display: false }
+            },
             y: {
                 beginAtZero: true,
                 max: 100,
-                title: {
-                    display: true,
-                    text: 'Progress (%)'
+                title: { display: true, text: 'Progress (%)', color: '#7f56da' },
+                ticks: { color: '#7f56da' },
+                grid: {
+                    color: 'rgba(127,86,218,0.045)',
+                    borderDash: [4, 4],
                 }
             },
             y1: {
                 position: 'right',
                 beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Days Enrolled'
-                },
-                grid: {
-                    drawOnChartArea: false
-                }
+                title: { display: true, text: 'Days Enrolled', color: '#ea6fb8' },
+                ticks: { color: '#ea6fb8' },
+                grid: { drawOnChartArea: false }
             }
         },
         plugins: {
+            legend: {
+                labels: {
+                    color: '#3b3663',
+                    font: { size: 13, weight: 600 },
+                    usePointStyle: true,
+                    padding: 18,
+                }
+            },
             tooltip: {
+                backgroundColor: '#fff',
+                borderColor: '#7f56da',
+                borderWidth: 1.5,
+                titleColor: '#7f56da',
+                bodyColor: '#111827',
+                bodyFont: { weight: 600 },
                 callbacks: {
                     afterLabel: function (context) {
                         const data = enrollmentData[context.dataIndex];
@@ -124,22 +147,29 @@ const ProgressChart = ({ courseId = null }) => {
         }
     };
 
+    // Stats
+    const avgProgress = Math.round(enrollmentData.reduce((sum, item) => sum + item.progress, 0) / enrollmentData.length);
+    const completionRate = Math.round((enrollmentData.filter(item => item.progress === 100).length / enrollmentData.length) * 100);
+    const activeStudents = enrollmentData.filter(item => item.progress > 0 && item.progress < 100).length;
+
     return (
         <div className={styles.chartContainer}>
             <div className={styles.header}>
-                <h2>Student Progress Tracking</h2>
+                <h2 className={styles.title}>Student Progress Tracking</h2>
                 <div className={styles.controls}>
                     <button
                         onClick={() => handleChartTypeChange('bar')}
-                        className={chartType === 'bar' ? styles.active : ''}
+                        className={`${styles.toggleBtn} ${chartType === 'bar' ? styles.active : ''}`}
+                        aria-label="Show Bar Chart"
                     >
-                        Bar Chart
+                        <span>Bar Chart</span>
                     </button>
                     <button
                         onClick={() => handleChartTypeChange('line')}
-                        className={chartType === 'line' ? styles.active : ''}
+                        className={`${styles.toggleBtn} ${chartType === 'line' ? styles.active : ''}`}
+                        aria-label="Show Line Chart"
                     >
-                        Line Chart
+                        <span>Line Chart</span>
                     </button>
                 </div>
             </div>
@@ -149,21 +179,13 @@ const ProgressChart = ({ courseId = null }) => {
                     <Bar
                         data={chartData}
                         options={options}
-                        ref={(ref) => {
-                            if (ref) {
-                                chartInstance.current = ref;
-                            }
-                        }}
+                        ref={(ref) => { if (ref) chartInstance.current = ref; }}
                     />
                 ) : (
                     <Line
                         data={chartData}
                         options={options}
-                        ref={(ref) => {
-                            if (ref) {
-                                chartInstance.current = ref;
-                            }
-                        }}
+                        ref={(ref) => { if (ref) chartInstance.current = ref; }}
                     />
                 )}
             </div>
@@ -171,19 +193,15 @@ const ProgressChart = ({ courseId = null }) => {
             <div className={styles.statsSummary}>
                 <div className={styles.statCard}>
                     <h3>Average Progress</h3>
-                    <p>{Math.round(enrollmentData.reduce((sum, item) => sum + item.progress, 0) / enrollmentData.length)}%</p>
+                    <p className={styles.statValue}>{avgProgress}%</p>
                 </div>
                 <div className={styles.statCard}>
                     <h3>Completion Rate</h3>
-                    <p>
-                        {Math.round((enrollmentData.filter(item => item.progress === 100).length / enrollmentData.length) * 100)}%
-                    </p>
+                    <p className={styles.statValue}>{completionRate}%</p>
                 </div>
                 <div className={styles.statCard}>
                     <h3>Active Students</h3>
-                    <p>
-                        {enrollmentData.filter(item => item.progress > 0 && item.progress < 100).length}
-                    </p>
+                    <p className={styles.statValue}>{activeStudents}</p>
                 </div>
             </div>
         </div>

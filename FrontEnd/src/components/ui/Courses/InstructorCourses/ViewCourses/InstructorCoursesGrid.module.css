@@ -1,58 +1,99 @@
-/* InstructorCoursesGrid.module.css */
-
 .gridContainer {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1250px;
+  margin: 2.7rem auto 2.2rem auto;
+  padding: 0 1.2rem;
+  font-family: var(--font-family), 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .header {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 1.5rem;
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 2.1rem;
   text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #7f56da 60%, #ea6fb8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4.3rem;
+  margin-bottom: 2.2rem;
+}
+
+.emptyImg {
+  width: 110px;
+  opacity: 0.84;
+  margin-bottom: 1.3rem;
 }
 
 p {
   text-align: center;
-  font-size: 1.1rem;
-  color: #555;
-  margin-top: 2rem;
+  font-size: 1.12rem;
+  color: #7f56da;
+  margin-top: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-family), 'Poppins', Arial, Helvetica, sans-serif;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.13rem;
+  color: #7f56da;
+  margin-top: 2.2rem;
+  font-weight: 700;
+  font-family: var(--font-family), 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.error {
+  color: #d82c45;
+}
+
+@media (max-width: 900px) {
   .gridContainer {
-    max-width: 95%;
+    max-width: 98vw;
+    padding: 0 0.2rem;
   }
-
   .header {
-    font-size: 1.75rem;
+    font-size: 1.45rem;
   }
-
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .header {
-    font-size: 1.5rem;
+  .gridContainer {
+    padding: 0 0.01rem;
   }
-
+  .header {
+    font-size: 1.12rem;
+    margin-bottom: 1.1rem;
+  }
   .grid {
     grid-template-columns: 1fr;
+    gap: 0.6rem;
   }
-
+  .emptyImg {
+    width: 70px;
+  }
   p {
     font-size: 1rem;
   }

@@ -12,15 +12,9 @@ const InstructorCourseCard = ({ course, onDelete }) => {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
             });
-
             const data = await res.json();
-            console.log('Delete response:', data);
-
             if (!data.success) throw new Error(data.message || 'Delete failed');
-
-            // Notify parent about deletion
             if (onDelete) onDelete(course.id);
-
         } catch (err) {
             console.error('Delete error:', err.message);
         }
@@ -28,23 +22,51 @@ const InstructorCourseCard = ({ course, onDelete }) => {
 
     return (
         <div className={styles.card}>
-            <img
-                src={course.thumbnail_url || logo}
-                alt={course.title}
-                className={styles.image}
-            />
+            <div className={styles.thumbnailWrapper}>
+                <img
+                    src={course.thumbnail_url || logo}
+                    alt={course.title}
+                    className={styles.image}
+                    onError={e => { e.target.src = logo; }}
+                />
+                <span className={styles.categoryTag}>
+                    {course.category || "Uncategorized"}
+                </span>
+            </div>
             <div className={styles.body}>
                 <h3 className={styles.title}>{course.title}</h3>
                 <p className={styles.description}>
-                    {course.description?.slice(0, 100)}...
+                    {course.description?.slice(0, 100) || "No description."}{course.description?.length > 100 ? '...' : ''}
                 </p>
                 <div className={styles.meta}>
-                    <span className={styles.tag}>{course.category}</span>
+                    <span className={styles.students}>
+                        <span className={styles.icon}>👥</span>
+                        {course?.students_count ?? 0} students
+                    </span>
+                    <span className={styles.status + ' ' + (course.is_published ? styles.published : styles.draft)}>
+                        {course.is_published ? "Published" : "Draft"}
+                    </span>
                 </div>
                 <div className={styles.actions}>
-                    <button onClick={() => navigate(`/courses/${course.id}`)}>Preview</button>
-                    <button onClick={() => navigate(`/edit-course/${course.id}`)}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button
+                        className={styles.previewBtn}
+                        onClick={() => navigate(`/courses/${course.id}`)}
+                    >
+                        Preview
+                    </button>
+                    <button
+                        className={styles.editBtn}
+                        onClick={() => navigate(`/edit-course/${course.id}`)}
+                    >
+                        Edit
+                    </button>
+                    <button
+                        className={styles.deleteBtn}
+                        onClick={handleDelete}
+                        title="Delete Course"
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

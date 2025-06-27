@@ -1,5 +1,5 @@
 // components/LessonContent/VideoLesson.jsx
-import React from 'react';
+
 import styles from './LessonContent.module.css';
 
 const VideoLesson = ({ src }) => (

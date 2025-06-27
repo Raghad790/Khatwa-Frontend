@@ -1,45 +1,89 @@
 .container {
   margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #fdfdfd;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.04);
+  padding: 1.2rem 1.3rem;
+  background: #fff;
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow-md, 0 2px 12px rgba(131,103,255,0.08));
+  font-family: var(--font-family, 'Poppins', sans-serif);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .label {
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: var(--primary, #8367ff);
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
 }
 
 .input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--border-color, #e0e0e0);
+  border-radius: var(--radius-sm, 7px);
+  background: var(--light-bg, #f7f7fb);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-dark, #222);
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary, #8367ff);
+  outline: none;
 }
 
 .button {
-  padding: 0.6rem 1rem;
-  background-color: #0070f3;
-  color: white;
+  padding: 0.7rem 1.2rem;
+  background: var(--gradient-primary, linear-gradient(135deg, #8367ff, #ff6b8b));
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 600;
+  font-size: 1.08rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-family: inherit;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(131,103,255,0.10);
+  margin-top: 0.2rem;
+  letter-spacing: 0.01em;
 }
 
 .button:disabled {
-  background-color: #999;
+  background: var(--accent, #e0d7f9);
+  color: #b1a3e6;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+.button:not(:disabled):hover,
+.button:not(:disabled):focus-visible {
+  background: linear-gradient(135deg, #ff6b8b 60%, #8367ff 100%);
+  box-shadow: 0 4px 16px rgba(255,107,139,0.14);
+  transform: translateY(-2px);
+  outline: none;
 }
 
 .message {
   margin-top: 1rem;
-  color: #006400;
-  font-weight: 500;
+  color: var(--success, #41ce8e);
+  font-weight: 600;
+  font-size: 1.01rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem 0.6rem;
+    max-width: 99vw;
+  }
 }

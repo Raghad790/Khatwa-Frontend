@@ -8,15 +8,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 70px;
-  padding: 0 1.5rem;
+  min-height: 64px;
+  padding: 0 2rem;
   gap: 1rem;
 }
 
-.leftSection {
+.left {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .logoLink {
@@ -33,18 +33,47 @@
   background: #fff;
 }
 
-.searchBox {
-  margin-left: 1.2rem;
-  min-width: 140px;
-  max-width: 260px;
-  flex: 1;
+.searchBarContainer {
+  background: #ede5ff;
+  border-radius: 16px;
+  padding: 0.18rem 1.2rem;
   display: flex;
+  align-items: center;
+  min-width: 200px;
+  max-width: 340px;
+  width: 100%;
+  margin-left: 0.7rem;
 }
 
-.rightSection {
+.right {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* nav links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  font-weight: 700;
+}
+
+.link {
+  text-decoration: none;
+  color: #444;
+  font-size: 1.06rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 7px;
+  transition: background 0.18s, color 0.18s;
+  display: flex;
+  align-items: center;
+}
+.link:hover,
+.link:focus {
+  background: linear-gradient(90deg, #e9dcfa 0%, #ffe6fa 100%);
+  color: #7f56da;
+  text-decoration: none;
 }
 
 .menuButton {
@@ -53,9 +82,24 @@
   background: rgba(127,86,218,0.08) !important;
   margin-right: 0.5rem;
 }
+/* Drawer (mobile) styles */
+.drawerLink {
+  color: #7f56da !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  padding: 0.55rem 0.9rem !important;
+  font-size: 1.1rem !important;
+  text-align: left;
+  transition: background 0.18s, color 0.18s;
+}
+.drawerLink:hover,
+.drawerLink:focus {
+  background: linear-gradient(90deg, #e9dcfa 0%, #ffe6fa 100%);
+  color: #ff6b8b !important;
+}
 
 .avatarBtn {
-  margin-left: 1rem !important;
+  margin-left: 1.1rem !important;
 }
 .avatar {
   width: 40px !important;
@@ -65,56 +109,25 @@
   background: linear-gradient(135deg,#f4e4ff,#e4f0ff);
 }
 
-.navLinks {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  font-weight: 600;
-}
-
-.link {
-  text-decoration: none;
-  color: #5d3fd3;
-  font-size: 1rem;
-  padding: 0.3rem 1.1rem;
-  border-radius: 8px;
-  transition: background 0.18s, color 0.18s;
-}
-.link:hover,
-.link:focus {
-  background: linear-gradient(90deg, #e9dcfa 0%, #ffe6fa 100%);
-  color: #7f56da;
-  text-decoration: none;
-}
-
 /* Responsive styles */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
+  .navLinks {
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 900px) {
   .toolbar {
-    padding: 0 0.8rem;
-    min-height: 60px;
+    padding: 0 0.7rem;
+    min-height: 56px;
   }
   .logo {
     width: 38px;
     height: 38px;
   }
-  .searchBox {
-    margin-left: 0.7rem;
-    min-width: 100px;
-    max-width: 180px;
-  }
-  .link {
-    font-size: 0.99rem;
-    padding: 0.25rem 0.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .toolbar {
-    gap: 0.5rem;
-    min-height: 54px;
-  }
-  .searchBox {
-    display: none;
+  .searchBarContainer {
+    min-width: 110px;
+    max-width: 140px;
+    padding: 0.08rem 0.5rem;
   }
   .menuButton {
     display: flex !important;
@@ -122,21 +135,18 @@
   .navLinks {
     display: none;
   }
-  .rightSection {
-    gap: 0.3rem;
-  }
-  .mobileNav {
-    display: none; /* For simplicity, no mobile menu implemented */
+  .searchBarContainer {
+    display: none;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 600px) {
   .toolbar {
     padding: 0 0.3rem;
-    min-height: 46px;
+    min-height: 44px;
   }
-  .leftSection {
-    gap: 0.5rem;
+  .left {
+    gap: 0.4rem;
   }
   .logo {
     width: 32px;
@@ -147,11 +157,7 @@
     height: 32px !important;
   }
 }
-
-@media (max-width: 384px) {
-  .toolbar {
-    min-height: 38px;
-  }
+@media (max-width: 400px) {
   .logo {
     width: 25px;
     height: 25px;

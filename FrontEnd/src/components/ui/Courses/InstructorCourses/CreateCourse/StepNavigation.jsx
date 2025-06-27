@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './StepNavigation.module.css';
 
 const steps = ['Course Info', 'Modules', 'Lessons'];

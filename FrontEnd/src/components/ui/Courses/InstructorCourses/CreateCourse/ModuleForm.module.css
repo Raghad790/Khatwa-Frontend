@@ -1,29 +1,29 @@
-/* Global box-sizing for consistency */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 .container {
   width: 100%;
   max-width: 600px;
   margin: 2rem auto;
-  padding: 1.5rem 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: box-shadow 0.3s ease;
+  padding: 2rem 2rem 1.5rem 2rem;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-family);
+  transition: box-shadow var(--transition-normal);
 }
 
 .container:hover {
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .heading {
   font-size: 1.8rem;
   margin-bottom: 1.25rem;
-  color: #222;
   text-align: center;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .form {
@@ -37,17 +37,19 @@
   width: 100%;
   padding: 0.7rem 1rem;
   font-size: 1.05rem;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-family: inherit;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  font-family: var(--font-family);
   outline-offset: 2px;
+  background: var(--light-bg);
+  color: var(--text-dark);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+  border-color: var(--primary);
+  box-shadow: 0 0 6px rgba(131, 103, 255, 0.13);
   outline: none;
 }
 
@@ -58,22 +60,35 @@
 
 .button,
 .continueBtn {
-  background-color: #007bff;
+  background: var(--gradient-primary);
   color: #fff;
   padding: 0.85rem 1rem;
   font-size: 1.15rem;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-full);
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 15px rgba(131, 103, 255, 0.18);
+  font-family: var(--font-family);
 }
 
-.button:hover,
-.continueBtn:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 16px rgba(0, 86, 179, 0.6);
+.button:disabled,
+.continueBtn:disabled {
+  background: var(--accent);
+  color: #b1a3e6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.button:hover:not(:disabled),
+.continueBtn:hover:not(:disabled),
+.button:focus-visible:not(:disabled),
+.continueBtn:focus-visible:not(:disabled) {
+  background: linear-gradient(135deg, #ff6b8b, #8367ff 85%);
+  box-shadow: 0 6px 20px rgba(255, 107, 139, 0.12);
+  transform: translateY(-2px);
+  outline: none;
 }
 
 /* Make buttons full width on very small screens for better touch targets */
@@ -86,50 +101,52 @@
 }
 
 .error {
-  color: #d93025;
+  color: var(--error);
   font-weight: 600;
   font-size: 0.95rem;
   margin-top: -0.5rem;
   text-align: center;
+  font-family: var(--font-family);
 }
 
 .moduleList {
   list-style: none;
   padding-left: 0;
   margin-top: 1.5rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--divider-color);
 }
 
 .moduleItem {
   padding: 0.8rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   font-size: 1rem;
-  color: #333;
-  transition: background-color 0.2s ease;
+  color: var(--text-medium);
+  transition: background-color var(--transition-fast);
+  font-family: var(--font-family);
 }
 
 .moduleItem:hover {
-  background-color: #f0f8ff;
+  background: var(--accent);
 }
 
 .moduleItem strong {
-  color: #007bff;
+  color: var(--primary);
 }
 
 p {
   text-align: center;
   font-style: italic;
-  color: #666;
+  color: var(--subtext-color);
   margin-top: 1rem;
   font-size: 1rem;
+  font-family: var(--font-family);
 }
 
 /* Responsive Design */
-
 @media (max-width: 768px) {
   .container {
-    max-width: 90%;
-    padding: 1.2rem 1.5rem;
+    max-width: 95%;
+    padding: 1.2rem 1.2rem 1rem 1.2rem;
   }
 
   .heading {
@@ -149,7 +166,7 @@ p {
 
 @media (max-width: 480px) {
   .container {
-    padding: 1rem 1rem;
+    padding: 1rem 0.8rem;
   }
 
   .heading {

@@ -107,7 +107,22 @@
   transform: scale(1.13) rotate(-5deg);
   box-shadow: 0 6px 20px rgba(255,107,139,0.13);
 }
+.leftHeader a:focus-visible {
+  outline: 2px solid var(--secondary, #ff6b8b);
+  outline-offset: 2px;
+}
 
+.leftHeader a.active,
+.leftHeader a[aria-current="page"] {
+  background: rgba(255,255,255,0.15);
+  color: #ff6b8b;
+  font-weight: 700;
+  box-shadow: 0 2px 14px rgba(255,107,139,0.11);
+}
+
+.leftHeader a:active {
+  transform: translateY(-2px) scale(0.98);
+}
 @media (max-width: 900px) {
   .nav {
     padding: 0.6rem 1rem;

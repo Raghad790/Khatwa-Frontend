@@ -1,42 +1,61 @@
-/* LessonContent.module.css */
-
 .content {
   padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(131,103,255,0.08));
   margin-top: 1rem;
+  font-family: var(--font-family, 'Poppins', sans-serif);
 }
 
-/* Video Lesson */
 .videoPlayer {
   width: 100%;
   max-width: 900px;
-  height: auto;
-  border-radius: 8px;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md, 10px);
   outline: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(131,103,255,0.10);
+  background: #000;
+  margin: 0 auto;
+  display: block;
 }
 
-/* Assignment (iframe) */
 .iframeContent {
   width: 100%;
   min-height: 600px;
   border: none;
-  border-radius: 8px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.06);
-  background-color: #f9f9f9;
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 1px 8px rgba(131,103,255,0.07) inset;
+  background: var(--light-bg, #f7f7fb);
+  margin: 0 auto;
+  display: block;
 }
 
-/* Text Content */
 .textContent {
-  font-size: 1rem;
+  font-size: 1.06rem;
   line-height: 1.7;
-  color: #333;
+  color: var(--text-dark, #222);
   white-space: pre-wrap;
-  padding: 1rem;
-  background-color: #fdfdfd;
-  border-left: 4px solid #0070f3;
-  border-radius: 6px;
+  padding: 1.2rem 1rem;
+  background: #fff;
+  border-left: 4px solid var(--primary, #8367ff);
+  border-radius: var(--radius-md, 10px);
   margin-top: 1rem;
+  box-shadow: 0 1px 6px rgba(131,103,255,0.06);
+  font-family: var(--font-family, 'Poppins', sans-serif);
+}
+
+@media (max-width: 700px) {
+  .content {
+    padding: 1rem 0.6rem;
+    border-radius: var(--radius-md, 10px);
+  }
+  .videoPlayer, .iframeContent {
+    min-height: 260px;
+    border-radius: var(--radius-sm, 7px);
+  }
+  .textContent {
+    padding: 1rem 0.7rem;
+    border-radius: var(--radius-sm, 7px);
+    font-size: 0.97rem;
+  }
 }

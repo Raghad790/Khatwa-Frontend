@@ -1,141 +1,215 @@
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --disabled-color: #9ca3af;
-  --background-light: #f9fafb;
-  --border-color: #e5e7eb;
-  --border-radius: 0.5rem;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --transition: all 0.2s ease-in-out;
+  --primary-color: var(--primary, #8367ff);
+  --primary-hover: #6845b7;
+  --secondary-color: var(--secondary, #ff6b8b);
+  --disabled-color: #bcb9d1;
+  --background-light: var(--light-bg, #f9fafe);
+  --border-color: var(--border-color, #e4e7ed);
+  --border-radius: var(--radius-md, 12px);
+  --shadow-sm: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.05));
+  --transition: var(--transition-fast, 0.2s ease);
+  --font-family: 'Poppins', sans-serif;
 }
 
-/* Base Layout */
-.wrapper {
-  max-width: 42rem; /* 672px */
+/* Sidebar / Module List Container */
+.sidebar {
+  width: 100%;
+  max-width: 420px;
+  background: var(--background-light);
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: var(--shadow-md, 0 4px 15px rgba(0,0,0,0.08));
+  padding: 2rem 1.2rem;
   margin: 0 auto;
-  padding: 1.25rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-family);
 }
 
-/* Module Card Styles */
-.moduleCard {
-  background-color: white;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+/* Header */
+h3 {
+  color: var(--primary-color);
+  font-size: 1.32rem;
+  font-weight: 800;
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.01em;
+  background: var(--gradient-primary, linear-gradient(135deg, #8367ff, #ff6b8b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Module List */
+.lessonList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lessonItem {
+  background: #fff;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md, 12px);
   box-shadow: var(--shadow-sm);
+  padding: 1rem 1.2rem 1.1rem 1.2rem;
+  margin-bottom: 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  transition: var(--transition);
-}
-
-.moduleCard:hover {
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-}
-
-/* Form Elements */
-.inputField {
-  padding: 0.625rem 0.875rem;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  width: 100%;
-  box-sizing: border-box;
-  transition: var(--transition);
-}
-
-.inputField:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-textarea.inputField {
-  resize: vertical;
-  min-height: 5rem;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  border-radius: var(--border-radius);
+  gap: 0.35rem;
+  position: relative;
   cursor: pointer;
-  transition: var(--transition);
+  transition: box-shadow 0.16s, border-color 0.13s;
+  font-family: var(--font-family);
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
+.lessonItem:hover, .lessonItem.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 3px 16px rgba(131,103,255,0.15);
+  z-index: 1;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-hover);
+.lessonItem > span {
+  font-size: 1.03rem;
+  font-weight: 700;
+  color: var(--primary-color);
 }
 
-.btn-primary:disabled {
-  background-color: var(--disabled-color);
-  cursor: not-allowed;
+.lessonItem small {
+  color: var(--subtext-color, #6c6f7d);
+  font-size: 0.93rem;
+  margin-top: 0.12rem;
+  font-style: italic;
 }
 
-.btn-ghost {
+/* Edit Button */
+.editBtn {
   background: none;
   border: none;
   color: var(--primary-color);
-  padding: 0.25rem;
+  font-size: 1.18rem;
+  position: absolute;
+  right: 1.4rem;
+  top: 1.2rem;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.5rem;
+  transition: background 0.14s;
 }
 
-.btn-ghost:hover {
-  opacity: 0.8;
+.editBtn:hover,
+.editBtn:focus-visible {
+  background: var(--accent, #e0d7f9);
+  color: var(--primary-hover);
+  outline: none;
 }
 
-/* Form Layout */
+/* Edit Form */
 .moduleEditForm {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
+  background: var(--gradient-light, linear-gradient(135deg, rgba(131,103,255,0.07), rgba(255,107,139,0.07)));
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.7rem 0.8rem;
+  box-shadow: 0 1px 5px rgba(131,103,255,0.07);
 }
 
+.moduleEditForm label {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1rem;
+  margin-bottom: 0.13rem;
+  font-family: var(--font-family);
+}
+
+.moduleEditForm input[type="text"],
+.moduleEditForm input[type="number"],
+.moduleEditForm textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm, 8px);
+  border: 1.5px solid var(--border-color);
+  font-size: 1rem;
+  background: #fafaff;
+  color: var(--text-dark, #2e2e2e);
+  font-family: var(--font-family);
+  outline: none;
+  margin-top: 0.08rem;
+  transition: border-color 0.18s;
+  resize: vertical;
+}
+
+.moduleEditForm input:focus,
+.moduleEditForm textarea:focus {
+  border-color: var(--primary-color);
+  background: #f6f2ff;
+}
+
+/* Actions */
 .formActions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
 }
 
-/* Utility Classes */
-.message {
-  color: #16a34a;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: #f0fdf4;
-  border-radius: var(--border-radius);
+.formActions button {
+  background: var(--gradient-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 0.65rem 1.4rem;
+  box-shadow: 0 2px 12px rgba(131,103,255,0.13);
+  letter-spacing: 0.01em;
+  transition: background 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  font-family: var(--font-family);
 }
 
+.formActions button:disabled {
+  background: #c9b8e5;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.formActions button[type="button"] {
+  background: #f3f2fa;
+  color: var(--primary-color);
+  border: 1.2px solid #e1d9fa;
+  box-shadow: none;
+}
+
+.formActions button[type="button"]:hover,
+.formActions button[type="button"]:focus-visible {
+  background: #ecdbfa;
+  color: var(--primary-hover);
+  border-color: #d1c3ee;
+}
+
+.formActions button[type="submit"]:hover,
+.formActions button[type="submit"]:focus-visible {
+  background: linear-gradient(90deg, #ff6b8b 60%, #8367ff 100%);
+  box-shadow: 0 6px 20px rgba(131,103,255,0.15);
+  outline: none;
+}
+
+/* Error */
 .error {
-  color: #dc2626;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: #fef2f2;
-  border-radius: var(--border-radius);
+  color: var(--error, #ff5c5c);
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+  padding: 0.8rem;
+  background: #fef2f2;
+  border-radius: var(--radius-sm, 8px);
+  font-family: var(--font-family);
 }
 
-/* Responsive Adjustments */
-@media (min-width: 640px) {
-  .moduleEditForm {
-    gap: 1rem;
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar {
+    max-width: 98vw;
+    padding: 1.1rem 0.3rem;
   }
-  
-  .formActions {
-    gap: 0.75rem;
+  .lessonItem {
+    padding: 0.7rem 0.7rem;
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDashboardData } from '../../../context/useDashboardData';
 
 function NextLessonPreview() {

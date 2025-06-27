@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./UserProfile.module.css";
 
 const ViewUserProfile = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [updatingStatus, setUpdatingStatus] = useState(false);
 
@@ -20,70 +21,82 @@ const ViewUserProfile = () => {
         fetchUser();
     }, [id]);
 
-    if (!user) return <div>Loading user profile...</div>;
+    if (!user) return <div className={styles.loading}>Loading user profile...</div>;
 
     return (
         <div className={styles.profileContainer}>
-            <h2>{user.name}'s Profile</h2>
-            <img src={user.avatar} alt="Img" />
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Role:</strong> {user.role}</p>
-            <p>
-                <strong>Status:</strong>{" "}
-                <span className={user.is_active ? styles.active : styles.inactive}>
-                    {user.is_active ? "Active" : "Inactive"}
-                </span>
-            </p>
-
-            <button
-                onClick={async () => {
-                    setUpdatingStatus(true);
-                    try {
-                        const res = await fetch(`/api/admin/users/${user.id}/status`, {
-                            method: "PATCH",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ is_active: !user.is_active }),
-                        });
-                        if (res.ok) {
-                            setUser((prev) => ({ ...prev, is_active: !prev.is_active }));
+            <div className={styles.avatarSection}>
+                <img
+                    src={user.avatar || "/default-avatar.png"}
+                    alt={`${user.name}'s avatar`}
+                    className={styles.avatar}
+                />
+            </div>
+            <h2 className={styles.profileTitle}>{user.name}'s Profile</h2>
+            <div className={styles.profileInfo}>
+                <p>
+                    <span className={styles.label}>Email:</span>
+                    <span>{user.email}</span>
+                </p>
+                <p>
+                    <span className={styles.label}>Role:</span>
+                    <span className={styles.role}>{user.role}</span>
+                </p>
+                <p>
+                    <span className={styles.label}>Status:</span>
+                    <span className={user.is_active ? styles.active : styles.inactive}>
+                        {user.is_active ? "Active" : "Inactive"}
+                    </span>
+                </p>
+            </div>
+            <div className={styles.actions}>
+                <button
+                    onClick={async () => {
+                        setUpdatingStatus(true);
+                        try {
+                            const res = await fetch(`/api/admin/users/${user.id}/status`, {
+                                method: "PATCH",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ is_active: !user.is_active }),
+                            });
+                            if (res.ok) {
+                                setUser((prev) => ({ ...prev, is_active: !prev.is_active }));
+                            }
+                        } catch (err) {
+                            console.error("Error updating status:", err);
+                        } finally {
+                            setUpdatingStatus(false);
                         }
-                    } catch (err) {
-                        console.error("Error updating status:", err);
-                    } finally {
-                        setUpdatingStatus(false);
-                    }
-                }}
-                disabled={updatingStatus}
-                className={styles.statusBtn}
-            >
-                {user.is_active ? "Deactivate" : "Activate"}
-            </button>
-            <button
-                onClick={async () => {
-                    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-                    if (!confirmDelete) return;
+                    }}
+                    disabled={updatingStatus}
+                    className={styles.statusBtn}
+                >
+                    {user.is_active ? "Deactivate" : "Activate"}
+                </button>
+                <button
+                    onClick={async () => {
+                        const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+                        if (!confirmDelete) return;
 
-                    try {
-                        const res = await fetch(`/api/users/${user.id}`, {
-                            method: "DELETE",
-                        });
-                        if (res.ok) {
-                            alert("User deleted successfully.");
-                            // Optionally redirect:
-                            window.location.href = "/admin/users";
-                        } else {
-                            alert("Failed to delete user.");
+                        try {
+                            const res = await fetch(`/api/users/${user.id}`, {
+                                method: "DELETE",
+                            });
+                            if (res.ok) {
+                                alert("User deleted successfully.");
+                                navigate("/admin/users");
+                            } else {
+                                alert("Failed to delete user.");
+                            }
+                        } catch (err) {
+                            console.error("Error deleting user:", err);
                         }
-                    } catch (err) {
-                        console.error("Error deleting user:", err);
-                    }
-                }}
-                className={styles.deleteBtn}
-            >
-                Delete Account
-            </button>
-
-            {user.avatar && <img src={user.avatar} alt={`${user.name}'s avatar`} />}
+                    }}
+                    className={styles.deleteBtn}
+                >
+                    Delete Account
+                </button>
+            </div>
         </div>
     );
 };

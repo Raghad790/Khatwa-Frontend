@@ -21,38 +21,29 @@ const CoursePreview = () => {
             try {
                 setLoading(true);
 
-                // 1. Fetch course details
+                // Fetch course details
                 const courseRes = await fetch(`/api/course/${courseId}`);
                 if (!courseRes.ok) throw new Error(`HTTP ${courseRes.status}`);
                 const courseData = await courseRes.json();
                 setCourse(courseData.data);
 
+                // Fetch modules
                 const modulesRes = await fetch(`/api/courses/${courseId}/modules`);
                 if (!modulesRes.ok) throw new Error(`HTTP ${modulesRes.status}`);
-
                 const modulesData = await modulesRes.json();
                 const modulesArray = Array.isArray(modulesData.data) ? modulesData.data : [];
-                console.log("modules DATA:", modulesArray);
                 setModules(modulesArray);
 
-
-                console.log(`Raw lessons response for module  before 1 `); //apprearred
-
+                // Fetch assignments & quizzes for each lesson in modules
                 if (modulesArray.length > 0) {
                     const allAssignments = [];
                     const allQuizzes = [];
-                    console.log(`Raw lessons response for module  before`); //not appreared on screen
-
                     for (const module of modulesArray) {
                         const lessonsRes = await fetch(`/api/modules/${module.id}/lessons`);
                         const lessonsData = lessonsRes.ok ? await lessonsRes.json() : { data: [] };
                         const lessonsArray = lessonsData.success && Array.isArray(lessonsData.data) ? lessonsData.data : [];
-
-                        console.log(`Raw lessons response for module ${module.id}:`, lessonsData);
-
-                        // Process each lesson
                         for (const lesson of lessonsArray) {
-                            // Fetch assignments
+                            // Assignments
                             const assignmentsRes = await fetch(`/api/lessons/${lesson.id}/assignments`);
                             if (assignmentsRes.ok) {
                                 const assignmentsData = await assignmentsRes.json();
@@ -60,8 +51,7 @@ const CoursePreview = () => {
                                     allAssignments.push(...assignmentsData.data);
                                 }
                             }
-
-                            // Fetch quizzes
+                            // Quizzes
                             const quizzesRes = await fetch(`/api/lessons/${lesson.id}/quizzes`);
                             if (quizzesRes.ok) {
                                 const quizzesData = await quizzesRes.json();
@@ -69,25 +59,18 @@ const CoursePreview = () => {
                                     allQuizzes.push(...quizzesData.data);
                                 }
                             }
-
                         }
                     }
-
                     setAssignments(allAssignments);
                     setQuizzes(allQuizzes);
                 }
 
-                // 4. Fetch enrollments
+                // Fetch enrollments
                 const enrollmentsRes = await fetch(`/api/courses/${courseId}/enrollments`);
                 const enrollmentsData = enrollmentsRes.ok ? await enrollmentsRes.json() : { data: [] };
-                console.log("Enrollments API Response:", enrollmentsData);  // Debug line
                 setEnrollments(enrollmentsData || []);
-
-
             } catch (err) {
                 setError(err.message);
-                console.error('Fetch error:', err);
-                // Reset arrays on error
                 setModules([]);
                 setAssignments([]);
                 setQuizzes([]);
@@ -104,20 +87,17 @@ const CoursePreview = () => {
     if (error) return <p className={styles.error}>{error}</p>;
     if (!course) return <p className={styles.message}>Course not found.</p>;
 
-    // Calculate enrollment count
     const enrollmentCount = enrollments.length;
 
     return (
         <div className={styles.container}>
             <button onClick={() => navigate(-1)} className={styles.backBtn}>← Back to Courses</button>
-
             <div className={styles.header}>
                 <img
                     src={course.thumbnail_url || defaultThumbnail}
                     alt={course.title}
                     className={styles.thumbnail}
                 />
-
                 <div className={styles.headerContent}>
                     <h1 className={styles.title}>{course.title}</h1>
                     <p className={styles.instructor}>Instructor: {course.instructor_name}</p>
@@ -127,7 +107,6 @@ const CoursePreview = () => {
                     </p>
                 </div>
             </div>
-
             <div className={styles.tabs}>
                 <button
                     className={`${styles.tab} ${activeTab === 'overview' ? styles.active : ''}`}
@@ -160,13 +139,11 @@ const CoursePreview = () => {
                     Quizzes
                 </button>
             </div>
-
             <div className={styles.tabContent}>
                 {activeTab === 'overview' && (
                     <div className={styles.overview}>
                         <h2>Course Description</h2>
                         <p>{course.description}</p>
-
                         <h2>Course Details</h2>
                         <div className={styles.detailsGrid}>
                             <div>
@@ -184,7 +161,6 @@ const CoursePreview = () => {
                         </div>
                     </div>
                 )}
-
                 {activeTab === 'modules' && (
                     <div className={styles.modules}>
                         <h2>Course Modules</h2>
@@ -212,7 +188,6 @@ const CoursePreview = () => {
                         )}
                     </div>
                 )}
-
                 {activeTab === 'students' && (
                     <div className={styles.students}>
                         <h2>Enrolled Students</h2>
@@ -241,14 +216,12 @@ const CoursePreview = () => {
                                         </div>
                                     </div>
                                 ))}
-
                             </div>
                         ) : (
                             <p>No students enrolled yet.</p>
                         )}
                     </div>
                 )}
-
                 {activeTab === 'assignments' && (
                     <div className={styles.assignments}>
                         <h2>Course Assignments</h2>
@@ -277,7 +250,6 @@ const CoursePreview = () => {
                         )}
                     </div>
                 )}
-
                 {activeTab === 'quizzes' && (
                     <div className={styles.quizzes}>
                         <h2>Course Quizzes</h2>

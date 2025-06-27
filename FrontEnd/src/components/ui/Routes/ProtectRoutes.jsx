@@ -1,30 +1,18 @@
-import axios from "axios";
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../../../hooks/Auth/userAuth';
 
-const api = axios.create({
-  baseURL: "http://localhost:5000/api",
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true, // This enables cookie handling
-});
+const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, loading } = useAuth();
 
-// Remove the localStorage token interceptor since we're using cookies
-api.interceptors.request.use(
-  (config) => config,
-  (error) => Promise.reject(error)
-);
-
-// Enhanced response interceptor
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      // Optionally attempt token refresh here before redirecting
-      // window.location.href = "/login";
+    if (loading) {
+        return <div>Loading...</div>; // Or replace with a spinner component
     }
-    return Promise.reject(error);
-  }
-);
 
-export default api;
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return children;
+};
+
+export default ProtectedRoute;

@@ -1,39 +1,71 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
-  background-color: #ffffff;
+  padding: 2.7rem 1.5rem 4rem 1.5rem;
+  background: #fff;
+  border-radius: var(--radius-lg, 18px);
+  box-shadow: var(--shadow-lg, 0 8px 36px rgba(131,103,255,0.07));
+  font-family: var(--font-family, 'Poppins', sans-serif);
+  min-height: 75vh;
 }
 
 .heading {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
+  margin-bottom: 2.3rem;
+  color: var(--primary, #8367ff);
+  letter-spacing: 0.01em;
+  font-family: var(--font-family, 'Poppins', sans-serif);
 }
 
 .emptyMessage {
   text-align: center;
-  font-size: 1.2rem;
-  color: #777;
+  font-size: 1.18rem;
+  color: var(--subtext-color, #b7b7b7);
+  margin-top: 2rem;
 }
 
 .moduleCards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 2rem 1.5rem;
+  margin-top: 1.1rem;
 }
 
 .moduleCard {
-  background-color: #f4f6fa;
+  background: var(--accent, #f7f6fc);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease-in-out;
+  border-radius: var(--radius-md, 14px);
+  box-shadow: 0 4px 18px rgba(131,103,255,0.11);
+  transition: 
+    transform 0.19s cubic-bezier(.4,1.1,.5,1.01),
+    box-shadow 0.17s;
+  will-change: transform;
+  outline: none;
 }
 
-.moduleCard:hover {
-  transform: translateY(-6px);
-  color: rgb(16, 62, 135);
+.moduleCard:hover,
+.moduleCard:focus-within {
+  transform: translateY(-7px) scale(1.02);
+  box-shadow: 0 8px 26px rgba(255,107,139,0.13);
+  background: linear-gradient(90deg, #f6e9ff 60%, #fce7f3 100%);
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+    border-radius: var(--radius-md, 11px);
+  }
+  .heading {
+    font-size: 1.32rem;
+  }
+  .moduleCards {
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  .moduleCard {
+    padding: 1.05rem;
+    border-radius: var(--radius-sm, 7px);
+  }
 }

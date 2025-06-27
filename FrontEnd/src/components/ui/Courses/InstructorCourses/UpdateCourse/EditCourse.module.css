@@ -3,9 +3,9 @@
   margin: 2rem auto;
   padding: 2rem;
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(127,86,218,0.09);
+  font-family: var(--font-family), 'Poppins', Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
@@ -18,35 +18,43 @@
 }
 
 .tabButton {
-  background-color: #f1f1f1;
+  background: #f1f1f1;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.85rem 2rem;
+  font-size: 1.07rem;
   font-weight: 600;
-  color: #333;
-  border-radius: 8px;
+  color: #7f56da;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.23s cubic-bezier(.36,2,.42,.93);
+  box-shadow: 0 1.5px 8px rgba(127,86,218,0.05);
+  font-family: var(--font-family), 'Poppins', Arial, Helvetica, sans-serif;
+  outline: none;
+  letter-spacing: 0.01em;
 }
 
-.tabButton:hover {
-  background-color: #e0eaff;
-  color: #007bff;
+.tabButton:hover,
+.tabButton:focus-visible {
+  background: linear-gradient(90deg, #ea6fb8 60%, #7f56da 90%);
+  color: #fff;
 }
 
 .activeTab {
-  background-color: #007bff;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  background: linear-gradient(90deg, #7f56da 80%, #ea6fb8 100%);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(127,86,218,0.19);
+}
+
+.tabContent {
+  margin-top: 1.8rem;
 }
 
 @media (max-width: 600px) {
   .tabButton {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    padding: 0.54rem 1.15rem;
   }
-
   .container {
-    padding: 1.5rem;
+    padding: 1.1rem;
   }
 }

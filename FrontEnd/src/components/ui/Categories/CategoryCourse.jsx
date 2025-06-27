@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import style from "./CategoryCourses.module.css";
 import card from "../../../assets/images/card1.jpg";
 import ViewCourseButton from "../Courses/StudentCourse/ViewCourseBtn";
-    
-    
+
 function CategoryCourses() {
     const { id } = useParams();
     const [courses, setCourses] = useState([]);
@@ -33,25 +32,52 @@ function CategoryCourses() {
                 setLoading(false);
             }
         }
-
         fetchData();
     }, [id]);
 
-
-    if (loading) return <div>Loading courses...</div>;
-    if (error) return <div>Error: {error}</div>;
-    if (!courses.length) return <div>No courses in this category.</div>;
+    if (loading) return <div className={style.loading}>Loading courses...</div>;
+    if (error) return <div className={style.error}>Error: {error}</div>;
+    if (!courses.length) return (
+        <section className={style.categoryCourses}>
+            <div className={style.emptyState}>
+                <img src="/empty-courses.svg" alt="No courses" className={style.emptyImg} />
+                <h3>No courses in this category yet.</h3>
+            </div>
+        </section>
+    );
 
     return (
         <section className={style.categoryCourses}>
-            <h2>Courses in {categoryName}y</h2>
+            <h2>
+                <span className={style.gradientText}>
+                    <span className={style.icon}>📚</span> {categoryName} Courses
+                </span>
+            </h2>
             <div className={style.grid}>
                 {courses.map(course => (
                     <div className={style.card} key={course.id}>
-                        <img src={card} alt={course.title} />
-                        <h3>{course.title}</h3>
-                        <p>{course.description?.substring(0, 100)}...</p>
-                        <ViewCourseButton courseId={course.id} />
+                        <div className={style.thumbnailWrapper}>
+                            <img
+                                src={course.thumbnail_url || card}
+                                alt={course.title}
+                                className={style.cardImg}
+                                onError={e => { e.target.src = card; }}
+                            />
+                            <span className={style.categoryTag}>
+                                {course.category_name || categoryName}
+                            </span>
+                        </div>
+                        <div className={style.cardBody}>
+                            <h3>{course.title}</h3>
+                            <p>
+                                {course.description
+                                    ? (course.description.length > 110
+                                        ? course.description.substring(0, 110) + "..."
+                                        : course.description)
+                                    : "No description available."}
+                            </p>
+                        </div>
+                        <ViewCourseButton courseId={course.id} className={style.viewBtn} />
                     </div>
                 ))}
             </div>

@@ -23,20 +23,27 @@ const InstructorCoursesGrid = () => {
         fetchCourses();
     }, []);
 
-    // This handler removes the deleted course from state without refreshing the page
     const handleDelete = (deletedId) => {
         setCourses((prev) => prev.filter((c) => c.id !== deletedId));
-        // Removed window.location.reload()
     };
 
-    if (loading) return <p>Loading courses...</p>;
-    if (error) return <p className="error">{error}</p>;
+    if (loading) return <p className={styles.loading}>Loading courses...</p>;
+    if (error) return <p className={styles.error}>{error}</p>;
 
     return (
-        <div className={styles.gridContainer}>
-            <h2 className={styles.header}>My Courses</h2>
+        <section className={styles.gridContainer}>
+            <h2 className={styles.header}>
+                <span className={styles.gradientText}>🎓 My Courses</span>
+            </h2>
             {courses.length === 0 ? (
-                <p>No courses yet. Start by creating one!</p>
+                <div className={styles.emptyState}>
+                    <img
+                        className={styles.emptyImg}
+                        src="/empty-courses.svg"
+                        alt="No courses"
+                    />
+                    <p>No courses yet. Start by creating one!</p>
+                </div>
             ) : (
                 <div className={styles.grid}>
                     {courses.map((course) => (
@@ -48,7 +55,7 @@ const InstructorCoursesGrid = () => {
                     ))}
                 </div>
             )}
-        </div>
+        </section>
     );
 };
 

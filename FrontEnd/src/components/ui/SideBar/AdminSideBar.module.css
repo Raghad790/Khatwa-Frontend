@@ -4,15 +4,15 @@
   left: -270px;
   width: 270px;
   height: 100vh;
-  background: var(--light-bg);
-  box-shadow: var(--shadow-lg);
-  color: var(--text-dark);
-  transition: left 0.35s var(--transition-fast);
+  background: var(--light-bg, #fff);
+  box-shadow: var(--shadow-lg, 0 8px 36px rgba(131,103,255,0.10));
+  color: var(--text-dark, #22223b);
+  transition: left 0.35s var(--transition-fast, cubic-bezier(0.4,0,0.2,1));
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding-top: var(--spacing-xl);
-  font-family: var(--font-family);
+  padding-top: var(--spacing-xl, 2.4rem);
+  font-family: var(--font-family, 'Poppins', sans-serif);
 }
 
 .sidebar.open {
@@ -24,19 +24,19 @@
   top: 2.2rem;
   left: 1.5rem;
   z-index: 1100;
-  background: var(--primary);
+  background: var(--primary, #8367ff);
   border: none;
   color: #fff;
   font-size: 2rem;
   padding: 0.5rem 0.8rem;
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: var(--shadow-md, 0 4px 18px rgba(131,103,255,0.14));
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background 0.15s, color 0.15s;
 }
 
 .mobileToggle:hover {
-  background: var(--secondary);
+  background: var(--secondary, #ff6b8b);
 }
 
 @media (min-width: 1024px) {
@@ -51,13 +51,13 @@
 .profile {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: 0 var(--spacing-lg) var(--spacing-md);
-  border-bottom: 1px solid var(--divider-color);
+  gap: var(--spacing-md, 1.1rem);
+  padding: 0 var(--spacing-lg, 1.7rem) var(--spacing-md, 1.1rem);
+  border-bottom: 1.5px solid var(--divider-color, #ece9f8);
 }
 
 .avatar {
-  background: var(--gradient-primary);
+  background: var(--gradient-primary, linear-gradient(90deg,#8367ff,#ff6b8b));
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -68,27 +68,27 @@
   justify-content: center;
   align-items: center;
   user-select: none;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md, 0 4px 18px rgba(131,103,255,0.13));
 }
 
 .profileName {
-  font-size: 1.1rem;
+  font-size: 1.13rem;
   font-weight: 700;
   margin: 0 0 0.2rem 0;
-  color: var(--primary);
+  color: var(--primary, #8367ff);
   letter-spacing: -0.5px;
 }
 
 .profileRole {
   margin: 0;
-  font-size: 0.90rem;
-  color: var(--subtext-color);
+  font-size: 0.97rem;
+  color: var(--subtext-color, #a6a6b3);
   font-weight: 500;
 }
 
 .nav {
   flex-grow: 1;
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-lg, 1.7rem);
   overflow-y: auto;
 }
 
@@ -101,33 +101,33 @@ ul {
 .menuItem {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: 0.85rem var(--spacing-xl);
-  color: var(--text-medium);
+  gap: var(--spacing-md, 1rem);
+  padding: 0.85rem var(--spacing-xl, 2.1rem);
+  color: var(--text-medium, #756fa7);
   text-decoration: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-md, 10px);
   margin-bottom: 0.2rem;
   font-size: 1rem;
   font-weight: 500;
   position: relative;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: background 0.13s, color 0.13s;
 }
 
 .menuItem:hover {
-  background: var(--gradient-light);
-  color: var(--primary);
+  background: var(--gradient-light, linear-gradient(90deg,#f3f1fd 60%,#fce7f3 100%));
+  color: var(--primary, #8367ff);
 }
 
 .menuItem:hover .icon {
-  color: var(--primary);
+  color: var(--primary, #8367ff);
 }
 
 .icon {
   font-size: 1.3rem;
   display: flex;
   align-items: center;
-  color: var(--text-medium);
-  transition: color var(--transition-fast);
+  color: var(--text-medium, #756fa7);
+  transition: color 0.13s;
 }
 
 .menuText {
@@ -136,7 +136,7 @@ ul {
 
 .active {
   color: #fff;
-  background: var(--gradient-primary);
+  background: var(--gradient-primary, linear-gradient(90deg,#8367ff,#ff6b8b));
   font-weight: 700;
   box-shadow: 0 3px 15px 0 rgba(131,103,255,0.07);
 }
@@ -146,26 +146,26 @@ ul {
 }
 
 .logout {
-  background: var(--error);
+  background: var(--error, #ff5c5c);
   border: none;
   color: #fff;
   font-weight: 700;
-  padding: 1rem var(--spacing-xl);
-  margin: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
-  border-radius: var(--radius-full);
+  padding: 1rem var(--spacing-xl, 2.1rem);
+  margin: var(--spacing-md, 1.1rem) var(--spacing-lg, 1.7rem) var(--spacing-lg, 1.7rem);
+  border-radius: var(--radius-full, 9999px);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 1rem;
   font-size: 1rem;
-  box-shadow: var(--shadow-sm);
-  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm, 0 1px 7px rgba(255,107,139,0.12));
+  transition: background 0.15s, box-shadow 0.15s;
   justify-content: center;
 }
 
 .logout:hover {
-  background: var(--secondary);
-  box-shadow: var(--shadow-md);
+  background: var(--secondary, #ff6b8b);
+  box-shadow: var(--shadow-md, 0 4px 18px rgba(255,107,139,0.19));
 }
 
 /* Responsive */
@@ -182,16 +182,16 @@ ul {
   .sidebar {
     width: 92vw;
     min-width: 0;
-    padding-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl, 1.5rem);
     font-size: 0.97rem;
   }
   .menuItem, .logout {
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
+    padding-left: var(--spacing-lg, 1.1rem);
+    padding-right: var(--spacing-lg, 1.1rem);
     font-size: 0.98rem;
   }
   .profile {
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
+    padding-left: var(--spacing-lg, 1.1rem);
+    padding-right: var(--spacing-lg, 1.1rem);
   }
 }

@@ -8,8 +8,7 @@ import {
   CardContent,
 } from "@mui/material";
 import { School, Star, Groups, Verified } from "@mui/icons-material";
-import heroImg from "../../../assets/images/about.png"; // Use your creative hero image here
-
+import heroImg from "../../../assets/images/about.png"; 
 const FEATURES = [
   {
     icon: <Star fontSize="large" className={styles.featureIcon} />,

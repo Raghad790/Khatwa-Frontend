@@ -1,58 +1,80 @@
-
-
 .container {
   text-align: center;
   margin-top: 1rem;
+  font-family: var(--font-family);
 }
 
 .enrollBtn {
   padding: 0.75rem 2rem;
-  font-size: 1rem;
-  border-radius: 8px;
+  font-size: 1.08rem;
+  border-radius: var(--radius-full);
   border: none;
   cursor: pointer;
-  background-color: #007bff;
+  background: var(--gradient-primary, linear-gradient(135deg, #8367ff, #ff6b8b));
   color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
-  transition: background-color 0.3s ease;
+  font-family: var(--font-family);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(131, 103, 255, 0.14);
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  letter-spacing: 0.01em;
 }
 
 .enrollBtn:disabled {
-  background-color: #999;
+  background: var(--accent, #e0d7f9);
+  color: #b1a3e6;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+.enrollBtn:hover:not(:disabled),
+.enrollBtn:focus-visible:not(:disabled) {
+  background: linear-gradient(135deg, #ff6b8b 60%, #8367ff 100%);
+  box-shadow: 0 6px 20px rgba(255, 107, 139, 0.12);
+  transform: translateY(-2px);
+  outline: none;
 }
 
 .message {
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
   font-weight: 600;
   font-size: 1rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   text-align: center;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
+  font-family: var(--font-family);
 }
 
-/* Success message */
 .success {
-  background-color: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
+  background: #eafaf3;
+  color: var(--success, #41ce8e);
+  border-color: #b8f5d7;
 }
 
-/* Error message */
 .error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border-color: #f5c6cb;
+  background: #fff2f3;
+  color: var(--error, #ff5c5c);
+  border-color: #ffd6db;
 }
 
-/* Informational message */
 .info {
-  background-color: #d1ecf1;
-  color: #0c5460;
-  border-color: #bee5eb;
+  background: #f4f6ff;
+  color: var(--primary, #8367ff);
+  border-color: #dbe2ff;
+}
+
+@media (max-width: 500px) {
+  .enrollBtn {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.97rem;
+  }
+
+  .message {
+    font-size: 0.92rem;
+    padding: 0.7rem;
+  }
 }

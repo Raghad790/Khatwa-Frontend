@@ -52,7 +52,7 @@ function CourseDetails() {
 
         {course && (
           <>
-            {/* Edudeme/Khatwa-Inspired Course Header */}
+           
             <section className={style.courseHeader}>
               <div className={style.thumbnailWrapper}>
                 <img
@@ -87,7 +87,6 @@ function CourseDetails() {
               </div>
             </section>
 
-            {/* Edudeme/Khatwa-Inspired Course Content */}
             <section className={style.courseContent}>
               <header className={style.contentHeader}>
                 <h2 className={style.contentTitle}>Course Content</h2>

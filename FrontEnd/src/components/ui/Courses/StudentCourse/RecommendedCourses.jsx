@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from './Recommended.module.css';
-import card from "../../../../assets/images/card1.jpg";
+import card from "../../../../assets/images/khdatabasemang.jpg";
 import { useNavigate } from "react-router-dom";
 
 function Recommended() {

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import style from "./CategoryCourses.module.css";
-import card from "../../../assets/images/card1.jpg";
+import card from "../../../assets/images/khdatabasemang.jpg";
 import ViewCourseButton from "../Courses/StudentCourse/ViewCourseBtn";
 
 function CategoryCourses() {

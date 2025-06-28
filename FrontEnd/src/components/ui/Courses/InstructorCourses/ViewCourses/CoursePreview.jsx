@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import styles from './CoursePreview.module.css';
-import defaultThumbnail from '../../../../../assets/images/card1.jpg';
+import defaultThumbnail from '../../../../../assets/images/khdatabasemang.jpg';
 
 const CoursePreview = () => {
     const { courseId } = useParams();

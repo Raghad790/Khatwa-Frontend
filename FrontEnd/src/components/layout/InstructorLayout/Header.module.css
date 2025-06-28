@@ -16,7 +16,7 @@
 .leftSection {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .logoLink {
@@ -52,6 +52,22 @@
   color: #7f56da !important;
   background: rgba(127,86,218,0.08) !important;
   margin-right: 0.5rem;
+}
+
+/* Drawer (mobile) styles */
+.drawerLink {
+  color: #7f56da !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  padding: 0.55rem 0.9rem !important;
+  font-size: 1.1rem !important;
+  text-align: left;
+  transition: background 0.18s, color 0.18s;
+}
+.drawerLink:hover,
+.drawerLink:focus {
+  background: linear-gradient(90deg, #e9dcfa 0%, #ffe6fa 100%);
+  color: #ff6b8b !important;
 }
 
 .avatarBtn {
@@ -108,7 +124,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .toolbar {
     gap: 0.5rem;
     min-height: 54px;
@@ -124,9 +140,6 @@
   }
   .rightSection {
     gap: 0.3rem;
-  }
-  .mobileNav {
-    display: none; /* No mobile menu implementation in this simple version */
   }
 }
 

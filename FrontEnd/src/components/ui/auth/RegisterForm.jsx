@@ -16,7 +16,7 @@ function Register() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const { register, registerWithGoogle } = useAuth();
+    const { register } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -62,19 +62,8 @@ function Register() {
     };
 
     // Google register handler (optional: wire to your OAuth logic)
-    const handleGoogleRegister = async (e) => {
-        e.preventDefault();
-        if (isLoading) return;
-        setIsLoading(true);
-        setError('');
-        try {
-            await registerWithGoogle();
-            navigate('/student/Dashboard');
-        } catch (err) {
-            setError(err.message || 'Google signup failed');
-        } finally {
-            setIsLoading(false);
-        }
+    const handleGoogleRegister = () => {
+        window.location.href = "http://localhost:5000/api/auth/google";
     };
 
     return (
@@ -107,14 +96,13 @@ function Register() {
                         <div className={styles.shape2}></div>
                     </div>
                 </div>
-
                 {/* Right Form Side */}
                 <div className={styles.formSide}>
-                    <div className={styles.logoContainer}>
-                        <img src={khlogo} alt="Khatwa" className={styles.logo} />
-                        <h3 className={styles.logoText}>Khatwa</h3>
-                    </div>
                     <div className={styles.card}>
+                        <div className={styles.logoContainer}>
+                            <img src={khlogo} alt="Khatwa" className={styles.logo} />
+                            <span className={styles.logoText}>KHATWA</span>
+                        </div>
                         <div className={styles.header}>
                             <h1 className={styles.title}>Create Your Account</h1>
                             <p className={styles.subtitle}>Sign up in seconds to start learning</p>
@@ -203,9 +191,7 @@ function Register() {
                                     </>
                                 )}
                             </button>
-                            <div className={styles.divider}>
-                                <span>OR</span>
-                            </div>
+                            <div className={styles.divider}><span>OR</span></div>
                             <button
                                 type="button"
                                 className={styles.googleButton}

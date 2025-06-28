@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './InstructorCourseCard.module.css';
 import { useNavigate } from 'react-router-dom';
-import logo from "../../../../../assets/images/card1.jpg";
+import logo from "../../../../../assets/images/khdatabasemang.jpg";
 
 const InstructorCourseCard = ({ course, onDelete }) => {
     const navigate = useNavigate();

@@ -2,7 +2,7 @@ import  { useState } from "react";
 import StepNavigation from "./StepNavigation";
 import CourseForm from "./CourseForm";
 import ModuleForm from "./ModuleForm";
-import LessonFormWithContent from "./LessonForm"; // merged component with lesson + content forms
+import LessonFormWithContent from "./LessonForm"; 
 
 const steps = [
     { id: 1, title: "Course Details" },

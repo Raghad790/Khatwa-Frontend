@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import Header from "../../../components/layout/AdminLayout/header";
 import Footer from "../../../components/layout/AdminLayout/footer";
 import AdminSidebar from "../../../components/ui/SideBar/AdminSideBar";
-import styles from "./AdminCategoriesManager.module.css"
+import styles from "./AdminCategoriesManager.module.css";
+
 const AdminCategoriesManager = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     // Form states for create/edit
-    const [formMode, setFormMode] = useState("create"); // or "edit"
+    const [formMode, setFormMode] = useState("create");
     const [formData, setFormData] = useState({ id: null, name: "" });
     const [formError, setFormError] = useState(null);
     const [formLoading, setFormLoading] = useState(false);
@@ -25,7 +26,7 @@ const AdminCategoriesManager = () => {
             });
             if (!res.ok) throw new Error("Failed to fetch categories");
             const json = await res.json();
-            setCategories(json.data || json); // adapt if your API wraps data or not
+            setCategories(json.data || json);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -69,7 +70,6 @@ const AdminCategoriesManager = () => {
                 throw new Error(errData.message || "Failed to save category");
             }
 
-            // Reset form and refresh list
             setFormData({ id: null, name: "" });
             setFormMode("create");
             fetchCategories();
@@ -114,6 +114,11 @@ const AdminCategoriesManager = () => {
         }
     };
 
+    // Responsive table headers for mobile
+    const getTableCell = (label, value) => {
+        return <td data-label={label}>{value}</td>;
+    };
+
     return (
         <>
             <Header />
@@ -121,19 +126,21 @@ const AdminCategoriesManager = () => {
             <div className={styles.container}>
                 <h1>Manage Categories</h1>
 
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="categoryName">
-                        Category Name:
-                    </label>
-                    <input
-                        id="categoryName"
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type="submit" disabled={formLoading}>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.formRow}>
+                        <label htmlFor="categoryName">
+                            Category Name:
+                        </label>
+                        <input
+                            id="categoryName"
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit" disabled={formLoading} className={styles.submitBtn}>
                         {formMode === "create" ? "Add Category" : "Update Category"}
                     </button>
                     {formMode === "edit" && (
@@ -167,19 +174,21 @@ const AdminCategoriesManager = () => {
                         <tbody>
                             {categories.map(({ id, name, created_at }) => (
                                 <tr key={id}>
-                                    <td>{id}</td>
-                                    <td>{name}</td>
-                                    <td>{new Date(created_at).toLocaleDateString()}</td>
-                                    <td className={styles.actions}>
+                                    {getTableCell("ID", id)}
+                                    {getTableCell("Name", name)}
+                                    {getTableCell("Created At", new Date(created_at).toLocaleDateString())}
+                                    <td className={styles.actions} data-label="Actions">
                                         <button
                                             onClick={() => handleEditClick({ id, name })}
                                             className={styles.editBtn}
+                                            type="button"
                                         >
                                             Edit
                                         </button>
                                         <button
                                             onClick={() => handleDelete(id)}
                                             className={styles.deleteBtn}
+                                            type="button"
                                         >
                                             Delete
                                         </button>

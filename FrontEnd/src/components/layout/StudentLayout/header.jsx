@@ -46,7 +46,7 @@ function Header() {
     >
       <Toolbar className={styles.toolbar}>
         {/* Left: Logo and Search */}
-        <div className={styles.left}>
+        <div className={styles.leftSection}>
           <Link
             to="/student/Dashboard"
             className={styles.logoLink}
@@ -56,14 +56,14 @@ function Header() {
             <img className={styles.logo} src={logo} alt="Khatwa Logo" />
           </Link>
           {!isMobile && (
-            <div className={styles.searchBarContainer}>
+            <div className={styles.searchBox}>
               <CourseSearch />
             </div>
           )}
         </div>
 
         {/* Right: Nav and Profile */}
-        <div className={styles.right}>
+        <div className={styles.rightSection}>
           {isMobile ? (
             <>
               <IconButton
@@ -82,6 +82,8 @@ function Header() {
                   sx: {
                     background:
                       "linear-gradient(135deg, #e0d6ff 0%, #ffe6f4 100%)",
+                    borderTopLeftRadius: "2rem",
+                    borderBottomLeftRadius: "2rem",
                   },
                 }}
               >
@@ -91,21 +93,8 @@ function Header() {
                   onClick={() => setDrawerOpen(false)}
                   onKeyDown={() => setDrawerOpen(false)}
                 >
-                  <List>
-                    {navLinks.map((link) => (
-                      <ListItem key={link.to} disablePadding>
-                        <ListItemButton
-                          component={Link}
-                          to={link.to}
-                          className={styles.drawerLink}
-                        >
-                          <ListItemText primary={link.label} />
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </List>
                   <Box
-                    sx={{ display: "flex", justifyContent: "center", mt: 2 }}
+                    sx={{ display: "flex", justifyContent: "center", mb: 2 }}
                   >
                     <Tooltip title="View Profile">
                       <IconButton
@@ -122,6 +111,19 @@ function Header() {
                       </IconButton>
                     </Tooltip>
                   </Box>
+                  <List>
+                    {navLinks.map((link) => (
+                      <ListItem key={link.to} disablePadding>
+                        <ListItemButton
+                          component={Link}
+                          to={link.to}
+                          className={styles.drawerLink}
+                        >
+                          <ListItemText primary={link.label} />
+                        </ListItemButton>
+                      </ListItem>
+                    ))}
+                  </List>
                 </Box>
               </Drawer>
             </>

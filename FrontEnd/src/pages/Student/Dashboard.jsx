@@ -7,31 +7,46 @@ import { useAuth } from "../../hooks/Auth/userAuth";
 import { useDashboardData } from "../../context/useDashboardData";
 import LearningTip from "../../components/ui/LearningTip/LearningTip";
 import ViewCategories from "../../components/ui/Categories/ViewCategories";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 
 function Dashboard() {
   const { user } = useAuth();
   const { enrollments } = useDashboardData();
 
+  // Modern, creative layout, inspired by Edudeme
   return (
     <>
       <Header />
       <Sidebar />
-
-      <div className={styles.dashboard}>
-        <header className={styles.header}>
-          <h1>Welcome {user?.name || user?.role || "again"} 🎓</h1>
-          <p>Here’s your learning space.</p>
+      <main className={styles.dashboard}>
+        <header className={styles.hero}>
+          <div>
+            <h1>
+              Welcome <span className={styles.username}>{user?.name || user?.role || "again"}</span> <span role="img" aria-label="graduation">🎓</span>
+            </h1>
+            <p className={styles.subtitle}>Your personalized learning journey starts here!</p>
+          </div>
+          <img
+            src="/assets/illustrations/dashboard-hero.svg"
+            className={styles.heroImg}
+            alt=""
+            loading="lazy"
+            aria-hidden
+          />
         </header>
 
-        <div className={styles.content}>
-          <div className={styles.card}>
-            <h2>📚 Enrolled Courses</h2>
+        <section className={styles.cardsRow}>
+          <div className={styles.card + " " + styles.gradientCard}>
+            <SchoolRoundedIcon className={styles.cardIcon} />
+            <h2>Enrolled Courses</h2>
             <p>
-              <strong>{enrollments.length}</strong> Active Courses
+              <strong>{enrollments.length}</strong> Active
             </p>
           </div>
-          <div className={styles.card}>
-            <h2>🧠 Your Progress</h2>
+          <div className={styles.card + " " + styles.glassCard}>
+            <TrendingUpRoundedIcon className={styles.cardIcon} />
+            <h2>Your Progress</h2>
             <p>
               {enrollments.length > 0
                 ? `${(
@@ -39,19 +54,20 @@ function Dashboard() {
                       (acc, curr) => acc + (curr.progress || 0),
                       0
                     ) / enrollments.length
-                  ).toFixed(0)}% Average Completion`
-                : "No progress data"}
+                  ).toFixed(0)}% Avg. Completion`
+                : "No progress yet"}
             </p>
           </div>
-          <div className={styles.card}>
-            <h2>🔔 Notifications</h2>
-            <p>No new alerts</p>
-          </div>
-        </div>
+        </section>
+
         <LearningTip />
-        <EnrolledCourses />
-        <ViewCategories />
-      </div>
+        <section className={styles.coursesSection}>
+          <EnrolledCourses />
+        </section>
+        <section className={styles.categoriesSection}>
+          <ViewCategories />
+        </section>
+      </main>
       <Footer />
     </>
   );

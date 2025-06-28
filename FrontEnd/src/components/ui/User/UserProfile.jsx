@@ -147,7 +147,7 @@ function UserProfile() {
 
             <section className={styles.basicInfo}>
                 <img
-                    src={user.avatar || "https://i.pravatar.cc/150?u=" + user.email}
+                    src={user.avatar || "https://randomuser.me/api/portraits/women/60.jpg" + user.email}
                     alt="User Avatar"
                     className={styles.avatar}
                 />

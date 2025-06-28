@@ -5,7 +5,7 @@ import ErrorBoundary from "./components/ui/errors/ErrorBoundary";
 import ProtectedRoute from "./components/ui/Routes/ProtectRoutes.jsx";
 import AuthProvider from "./context/AuthProvider";
 import { DashboardDataProvider } from "./context/DashboardDataContext.jsx";
-import OAuthRedirectHandler from "./components/ui/auth/OAuthRedirectHandler";
+import GoogleCallback from "./pages/Auth/GoogleCallback.jsx"; // ✅ This is your OAuthRedirectHandler
 
 // Public pages
 import Home from "./pages/Home/Home";
@@ -59,8 +59,8 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/course/:id" element={<CourseDetails />} />
-            {/* OAuth Redirect Route */}
-            <Route path="/oauth-redirect" element={<OAuthRedirectHandler />} />
+            {/* ✅ Google OAuth Redirect Route */}
+            <Route path="/auth/google/callback" element={<GoogleCallback />} />
 
             {/* Student Routes */}
             <Route
@@ -235,7 +235,10 @@ function App() {
               path="/admin/courses/pending"
               element={<ReviewPendingCoursesPages />}
             />
-            <Route path="/admin/courses" element={<AdminCoursesTablePages />} />
+            <Route
+              path="/admin/courses"
+              element={<AdminCoursesTablePages />}
+            />
             <Route
               path="/admin-profile"
               element={
@@ -244,8 +247,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            
 
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />

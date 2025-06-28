@@ -1,68 +1,125 @@
-import styles from "./footer.module.css";
-import logo from "../../../../src/assets/images/khlogo.png";
+import { Link } from 'react-router-dom';
+import styles from './Footer.module.css';
+import logo from '../../../assets/images/khlogo.png';
+import googlepay from '../../../assets/images/khgoogle pay.jpg';
+import appstore from '../../../assets/images/khappstore.png';
+import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 
-function Footer() {
-    return (
-        <footer className={styles.footer}>
-            <div className={styles.footerWave}></div>
-            <div className={styles.footerContent}>
-                <div className={styles.brandSection}>
-                    <img src={logo} alt="Khatwa" className={styles.logo} />
-                    <div>
-                        <span className={styles.brandName}>Khatwa</span>
-                        <p className={styles.tagline}>
-                            Guiding Your First Step to Greatness.<br/>
-                            Your modern LMS for a brighter future.
-                        </p>
-                    </div>
-                    <div className={styles.socialRow}>
-                        <a href="#" aria-label="Facebook" className={styles.socialIcon}><i className="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter" className={styles.socialIcon}><i className="fa-brands fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram" className={styles.socialIcon}><i className="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube" className={styles.socialIcon}><i className="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div className={styles.linksSection}>
-                    <div className={styles.linkColumn}>
-                        <h4 className={styles.columnTitle}>Explore</h4>
-                        <a href="/main">Home</a>
-                        <a href="/courses">Courses</a>
-                        <a href="/about">About Us</a>
-                    </div>
-                    <div className={styles.linkColumn}>
-                        <h4 className={styles.columnTitle}>Support</h4>
-                        <a href="/faq">FAQ</a>
-                        <a href="/contact">Contact</a>
-                        <a href="/feedback">Feedback</a>
-                        <a href="/privacy">Privacy Policy</a>
-                    </div>
-                    <div className={styles.linkColumn}>
-                        <h4 className={styles.columnTitle}>Contact</h4>
-                        <div className={styles.contactRow}>
-                            <i className={`fa-solid fa-location-dot ${styles.contactIcon}`}></i>
-                            <span>123 Khatwa Ave, Amman, Jordan</span>
-                        </div>
-                        <div className={styles.contactRow}>
-                            <i className={`fa-solid fa-envelope ${styles.contactIcon}`}></i>
-                            <span>support@khatwa.com</span>
-                        </div>
-                        <div className={styles.contactRow}>
-                            <i className={`fa-solid fa-phone ${styles.contactIcon}`}></i>
-                            <span>+962-123-456-789</span>
-                        </div>
-                    </div>
-                </div>
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      {/* Main Footer Content */}
+      <div className={styles.mainFooter}>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {/* Column 1 - About */}
+            <div className={styles.footerCol}>
+              <div className={styles.brand}>
+                <img src={logo} alt="Khatwa" className={styles.logo} />
+                <h3 className={styles.name}>Khatwa</h3>
+              </div>
+              <p className={styles.description}>
+                Guiding Your First Step to Greatness. A modern learning management system designed to help you achieve your educational goals.
+              </p>
+              <div className={styles.socialLinks}>
+                <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
+                <a href="#" aria-label="Twitter"><Twitter size={18} /></a>
+                <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
+                <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
+                <a href="#" aria-label="Youtube"><Youtube size={18} /></a>
+              </div>
             </div>
-            <div className={styles.footerBottom}>
-                <span>© {new Date().getFullYear()} Khatwa LMS. All rights reserved.</span>
-                <div className={styles.legalLinks}>
-                    <a href="/terms">Terms of Service</a>
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/help">Help Center</a>
-                </div>
+            
+            {/* Column 2 - Explore */}
+            <div className={styles.footerCol}>
+              <h4>Explore</h4>
+              <ul className={styles.footerLinks}>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/courses">All Courses</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/about">About Us</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/contact">Contact</Link>
+                </li>
+              </ul>
             </div>
-        </footer>
-    );
-}
+            
+            {/* Column 3 - Popular Courses */}
+            <div className={styles.footerCol}>
+              <h4>Popular Courses</h4>
+              <ul className={styles.footerLinks}>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/course/web-development">Web Development</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/course/ux-design">UX Design</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/course/marketing">Digital Marketing</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/course/data-science">Data Science</Link>
+                </li>
+                <li>
+                  <ArrowRight size={14} />
+                  <Link to="/course/mobile-apps">Mobile App Development</Link>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Column 4 - Contact */}
+            <div className={styles.footerCol}>
+              <h4>Contact Us</h4>
+              <ul className={styles.contactList}>
+                <li>
+                  <MapPin size={18} />
+                  <span>123 Education St., Amman, Jordan</span>
+                </li>
+                <li>
+                  <Phone size={18} />
+                  <a href="tel:+962123456789">+962-123-456-789</a>
+                </li>
+                <li>
+                  <Mail size={18} />
+                  <a href="mailto:support@khatwa.com">support@khatwa.com</a>
+                </li>
+              </ul>
+              
+              <div className={styles.appButtons}>
+                <a href="#" className={styles.appBtn}>
+                  <img src={appstore} alt="App Store" />
+                </a>
+                <a href="#" className={styles.appBtn}>
+                  <img src={googlepay} alt="Google Play" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Copyright Bar */}
+      <div className={styles.copyrightBar}>
+        <div className={styles.container}>
+          <p>© {new Date().getFullYear()} Khatwa LMS. All rights reserved.</p>
+          <div className={styles.footerNav}>
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/help">Help Center</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

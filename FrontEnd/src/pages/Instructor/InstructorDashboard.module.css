@@ -6,24 +6,27 @@
   flex-direction: column;
   align-items: stretch;
   font-family: var(--font-family, 'Poppins', sans-serif);
+  box-sizing: border-box;
 }
 
 .header {
   text-align: left;
   margin-bottom: 2.7rem;
+  padding-top: 1.7rem;
 }
 
 .header h1 {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 800;
   color: var(--primary, #8367ff);
   margin-bottom: 0.7rem;
   letter-spacing: 0.01em;
+  word-break: break-word;
 }
 
 .header p {
   color: var(--secondary, #ff6b8b);
-  font-size: 1.1rem;
+  font-size: 1.16rem;
   font-weight: 600;
   margin: 0;
   letter-spacing: 0.01em;
@@ -52,12 +55,25 @@
   transform: translateY(-3px) scale(1.01);
 }
 
+/* Responsive layout for sidebar overlay, padding, and text scaling */
+@media (max-width: 1200px) {
+  .dashboard {
+    padding: 2rem 0.8rem 2.5rem 0.8rem;
+  }
+  .header h1 {
+    font-size: 2rem;
+  }
+}
 @media (max-width: 900px) {
   .dashboard {
     padding: 1.2rem 0.3rem 2rem 0.3rem;
   }
   .header h1 {
-    font-size: 1.36rem;
+    font-size: 1.35rem;
+  }
+  .header {
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
   }
   .content {
     gap: 1rem;
@@ -68,12 +84,15 @@
     min-width: 0;
   }
 }
-
 @media (max-width: 600px) {
   .dashboard {
     padding: 0.2rem 0.01rem 1.2rem 0.01rem;
   }
   .header {
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.1rem;
+    padding-top: 0.3rem;
+  }
+  .header h1 {
+    font-size: 1.03rem;
   }
 }
